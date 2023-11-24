@@ -1,5 +1,17 @@
 <?php
 
+function url(string $url) : string 
+{
+    $server = filter_input(INPUT_SERVER, 'SERVER_NAME');
+    $environment = ($server == 'localhost' ? DEVELOPMENT_URL : PRODUCTION_URL);
+
+        if(str_starts_with($url, '/')){
+            return $environment.$url;
+        }else{
+            return $environment.'/'.$url;
+        }
+}
+
 function salutation(): string 
 {
     $hour = date(strtotime('H'));
@@ -29,7 +41,7 @@ function summarizeText(string $text, int $limit, string $continues = '...'): str
     return $summarizeText.$continues;
 }
 
-function TimeConunt(string $date) : string
+function timeCount(string $date) : string
 {
     $now = strtotime(date('Y-m-d H:i:s'));
     $time = strtotime($date);
