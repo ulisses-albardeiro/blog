@@ -1,5 +1,21 @@
 <?php
 
+function slug(string $string) : string 
+{
+    $map ['a'] = 
+    'ÁÀÂÃÇÈÉÊẼÌÍÎĨÒÓÔÕÑÙÚÛŨàáâãèéêẽìíîĩòóôõùúûũ@#$%&*<>?^{}][~+=§£¢';
+    
+    $map ['b'] =
+    'aaaaceeeeiiiioooonuuuuaaaaeeeeiiiioooouuuu--------------------';
+
+    $slug = strtr(mb_convert_encoding($string, 'ISO-8859-01', 'UTF-8'), ($map ['a']), ($map['b']));
+    $slug = strip_tags(trim($slug));
+    $slug = str_replace(' ', '-', $slug);
+    $slug = str_replace(['-----', '----', '---', '--'], '-', $slug);
+
+    return strtolower(mb_convert_encoding($slug, 'ISO-8859-1', 'UTF-8'));
+}
+
 function url(string $url) : string 
 {
     $server = filter_input(INPUT_SERVER, 'SERVER_NAME');
