@@ -1,19 +1,19 @@
 <?php
 
-function slug(string $string) : string 
+function slug(string $title) : string 
 {
     $map ['a'] = 
-    'ÁÀÂÃÇÈÉÊẼÌÍÎĨÒÓÔÕÑÙÚÛŨàáâãèéêẽìíîĩòóôõùúûũ@#$%&*<>?^{}][~+=§£¢';
+    'ÁÀÂÃÇÈÉÊẼÌÍÎĨÒÓÔÕÑÙÚÛŨàáâãèéêẽìíîĩòóôõùúûũ@#$%&*<>?^{}][~+=§£¢!()';
     
     $map ['b'] =
-    'aaaaceeeeiiiioooonuuuuaaaaeeeeiiiioooouuuu--------------------';
+    'aaaaceeeeiiiioooonuuuuaaaaeeeeiiiioooouuuu-----------------------';
 
-    $slug = strtr(mb_convert_encoding($string, 'ISO-8859-01', 'UTF-8'), ($map ['a']), ($map['b']));
+    $slug = strtr(utf8_decode($title), utf8_decode($map['a']), ($map['b']));
     $slug = strip_tags(trim($slug));
     $slug = str_replace(' ', '-', $slug);
-    $slug = str_replace(['-----', '----', '---', '--'], '-', $slug);
+    $slug = str_replace(['------', '----','---', '--'], '-', $slug);
 
-    return strtolower(mb_convert_encoding($slug, 'ISO-8859-1', 'UTF-8'));
+    return strtolower(utf8_decode($slug));
 }
 
 function url(string $url) : string 
