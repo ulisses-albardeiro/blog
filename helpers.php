@@ -1,68 +1,105 @@
 <?php
 
-function slug(string $title) : string 
+/**
+ * Busca o ambiente de desenvolvimento 
+ * @return boll retorna valor true ser for em localhost e false para ambiente de produção
+ */
+function localhost(): bool
 {
-    $map ['a'] = 
-    'ÁÀÂÃÇÈÉÊẼÌÍÎĨÒÓÔÕÑÙÚÛŨàáâãèéêẽìíîĩòóôõùúûũ@#$%&*<>?^{}][~+=§£¢!()';
-    
-    $map ['b'] =
-    'aaaaceeeeiiiioooonuuuuaaaaeeeeiiiioooouuuu-----------------------';
+    $servidor = filter_input(INPUT_SERVER, 'SERVER_NAME');
 
-    $slug = strtr(utf8_decode($title), utf8_decode($map['a']), ($map['b']));
+    if($servidor == 'localhost'){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+/**
+ * Valida o email, exigindo um '@' e um '.' para poder ser aprovado
+ * @param string email de entrada
+ * @return bool retorno com verdadeiro ou falso para a validação do email
+ */
+
+function validarEmail(string $email): bool
+{
+    return filter_var($email, FILTER_VALIDATE_EMAIL);
+}
+
+/**
+ * Limpa a slug trocando caracteres para outros mais limpos tornando-o mais amigavel
+ * @param string titulo do post
+ * @return string $slug sem simbolos e acentos, com apenas letras e traços
+  */
+
+function slug(string $title): string
+{
+    $map['a'] =
+        'ÁÀÂÃÇÈÉÊẼÌÍÎĨÒÓÔÕÑÙÚÛŨàáâãèéêẽìíîĩòóôõùúûũ@#$%&*<>?^{}][~+=§£¢!()!@#$%¨*%$';
+
+    $map['b'] =
+        'aaaaceeeeiiiioooonuuuuaaaaeeeeiiiioooouuuu---------------------------------';
+
+    $slug = strtr(mb_convert_encoding($title, 'UTF-8'), mb_convert_encoding($map['a'], 'UTF-8'), ($map['b']));
     $slug = strip_tags(trim($slug));
     $slug = str_replace(' ', '-', $slug);
-    $slug = str_replace(['------', '----','---', '--'], '-', $slug);
+    $slug = str_replace(['------', '----', '---', '--'], '-', $slug);
 
-    return strtolower(utf8_decode($slug));
+    return strtolower(mb_convert_encoding($slug, 'UTF-8'));
 }
 
-function url(string $url) : string 
+
+
+/**
+ * Monta a URL de acordo com o ambiente.
+ * @param string $url Parte do caminho (ex.: 'admin' ou '/admin').
+ * @return string URL completa do ambiente atual.
+ */
+
+function url(string $url): string
 {
-    $server = filter_input(INPUT_SERVER, 'SERVER_NAME');
-    $environment = ($server == 'localhost' ? DEVELOPMENT_URL : PRODUCTION_URL);
+    $servidor = filter_input(INPUT_SERVER, 'SERVER_NAME');
+    $ambiente = ($servidor == 'localhost' ? DEVELOPMENT_URL : PRODUCTION_URL);
 
-        if(str_starts_with($url, '/')){
-            return $environment.$url;
-        }else{
-            return $environment.'/'.$url;
-        }
-}
-
-function salutation(): string 
-{
-    $hour = date(strtotime('H'));
-
-    if($hour >= 0 && $hour <=5){
-        $salutation = 'boa madrugada';
-    }elseif($hour >= 6 && $hour <= 12){
-        $salutation = 'bom dia';
-    }elseif($hour >= 13 && $hour <= 18){
-        $salutation = 'boa tarde';
-    }else {
-        $salutation = 'boa noite';
+    if (str_starts_with($url, '/')) {
+        return $ambiente . $url;
+    } else {
+        return $ambiente . '/' . $url;
     }
-
-    return $salutation;
 }
 
-function summarizeText(string $text, int $limit, string $continues = '...'): string 
+/**
+ * Trunca um texto para caber dentro do card
+ * @param string $text é o texto completo
+ * @param int $limit é o tamanho do texto final
+ * @param string valor padrão '...'
+ * @return $textoResumido texto truncado concatenado com '...'
+ */
+
+function textoResumido(string $text, int $limit, string $continues = '...'): string
 {
     $cleanText = strip_tags(trim($text));
-    if(mb_strlen($cleanText) <= $limit){
+    if (mb_strlen($cleanText) <= $limit) {
         return $cleanText;
     }
 
-    $summarizeText = mb_substr($cleanText, 0,mb_strrpos(mb_substr($cleanText, 0, $limit),''));
+    $textoResumido = mb_substr($cleanText, 0, mb_strrpos(mb_substr($cleanText, 0, $limit), ''));
 
-    return $summarizeText.$continues;
+    return $textoResumido . $continues;
 }
 
-function timeCount(string $date) : string
+/**
+ * Conta o tempo passado desde a publicação (ex.: há 1 minuto, há 3 dias, etc)
+ * @param string $data data da publicação
+ * @return string tempo passado desde a publicação
+ */
+
+function contagemTempo(string $date): string
 {
     $now = strtotime(date('Y-m-d H:i:s'));
     $time = strtotime($date);
     $difference = $now - $time;
-    
+
     $seconds = $difference;
     $minutes = round($difference / 60);
     $hours = round($difference / 3600);
@@ -71,19 +108,19 @@ function timeCount(string $date) : string
     $months = round($difference / 2419200);
     $yers = round($difference / 29030400);
 
-    if($seconds <= 60){
+    if ($seconds <= 60) {
         return 'agora';
-    }elseif($minutes <= 60){
-        return $minutes == 1 ? 'há 1 minuto' : 'há '.$minutes.' minutos';
-    }elseif($hours <= 24){
-        return $hours == 1 ? 'há 1 hora' : 'há '.$hours.' horas';
-    }elseif($days <= 30){
-        return $days == 1 ? 'há 1 dia' : 'há '.$days.'dias ';
-    }elseif($weeks <= 4){
-        return $weeks == 1 ? 'há 1 semana' : 'há '.$weeks.' semanas';
-    }elseif($months <= 12){
-        return $months == 1 ? 'há 1 mês' : 'há '.$months.' meses';
-    }else{
-        return $yers == 1 ? 'há 1 ano' : 'há '.$yers.' anos';
+    } elseif ($minutes <= 60) {
+        return $minutes == 1 ? 'há 1 minuto' : 'há ' . $minutes . ' minutos';
+    } elseif ($hours <= 24) {
+        return $hours == 1 ? 'há 1 hora' : 'há ' . $hours . ' horas';
+    } elseif ($days <= 30) {
+        return $days == 1 ? 'há 1 dia' : 'há ' . $days . 'dias ';
+    } elseif ($weeks <= 4) {
+        return $weeks == 1 ? 'há 1 semana' : 'há ' . $weeks . ' semanas';
+    } elseif ($months <= 12) {
+        return $months == 1 ? 'há 1 mês' : 'há ' . $months . ' meses';
+    } else {
+        return $yers == 1 ? 'há 1 ano' : 'há ' . $yers . ' anos';
     }
 }
