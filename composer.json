@@ -1,0 +1,21 @@
+{
+    "name": "note/blog",
+    "autoload": {
+        "psr-4": {
+            "sistema\\": "sistema/"
+        },
+        "files": [
+            "sistema/config.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Ulisses Alba",
+            "email": "ualbardeiro@gmail.com"
+        }
+    ],
+    "require": {
+        "pecee/simple-router": "5.4.1.7",
+        "twig/twig": "^3.14"
+    }
+}

@@ -7,3 +7,5 @@ define('SITE_DESC', 'Tecnologias em computação');
 
 define('PRODUCTION_URL', 'https://ulissesalba.com');
 define('DEVELOPMENT_URL', 'http://localhost/blog');
+
+define('URL_SITE', 'blog/');

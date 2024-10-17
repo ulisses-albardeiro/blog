@@ -1,10 +1,14 @@
 <?php
 
+namespace sistema\Nucleo;
+
+class Helpers{
+
 /**
  * Busca o ambiente de desenvolvimento 
  * @return boll retorna valor true ser for em localhost e false para ambiente de produção
  */
-function localhost(): bool
+public static function localhost(): bool
 {
     $servidor = filter_input(INPUT_SERVER, 'SERVER_NAME');
 
@@ -21,7 +25,7 @@ function localhost(): bool
  * @return bool retorno com verdadeiro ou falso para a validação do email
  */
 
-function validarEmail(string $email): bool
+public static function validarEmail(string $email): bool
 {
     return filter_var($email, FILTER_VALIDATE_EMAIL);
 }
@@ -32,7 +36,7 @@ function validarEmail(string $email): bool
  * @return string $slug sem simbolos e acentos, com apenas letras e traços
   */
 
-function slug(string $title): string
+public static function slug(string $title): string
 {
     $map['a'] =
         'ÁÀÂÃÇÈÉÊẼÌÍÎĨÒÓÔÕÑÙÚÛŨàáâãèéêẽìíîĩòóôõùúûũ@#$%&*<>?^{}][~+=§£¢!()!@#$%¨*%$';
@@ -56,7 +60,7 @@ function slug(string $title): string
  * @return string URL completa do ambiente atual.
  */
 
-function url(string $url): string
+public static function url(string $url = null): string
 {
     $servidor = filter_input(INPUT_SERVER, 'SERVER_NAME');
     $ambiente = ($servidor == 'localhost' ? DEVELOPMENT_URL : PRODUCTION_URL);
@@ -76,7 +80,7 @@ function url(string $url): string
  * @return $textoResumido texto truncado concatenado com '...'
  */
 
-function textoResumido(string $text, int $limit, string $continues = '...'): string
+public static function textoResumido(string $text, int $limit, string $continues = '...'): string
 {
     $cleanText = strip_tags(trim($text));
     if (mb_strlen($cleanText) <= $limit) {
@@ -94,7 +98,7 @@ function textoResumido(string $text, int $limit, string $continues = '...'): str
  * @return string tempo passado desde a publicação
  */
 
-function contagemTempo(string $date): string
+public static function contagemTempo(string $date): string
 {
     $now = strtotime(date('Y-m-d H:i:s'));
     $time = strtotime($date);
@@ -123,4 +127,6 @@ function contagemTempo(string $date): string
     } else {
         return $yers == 1 ? 'há 1 ano' : 'há ' . $yers . ' anos';
     }
+}
+
 }
