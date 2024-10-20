@@ -4,6 +4,14 @@ namespace sistema\Nucleo;
 
 class Helpers{
 
+    public static function redirecionar(string $url = null): void
+    {
+        header('HTTP/1.1 302 Found');
+        $local = ($url ? self::url($url) : self::url());
+        header("Location: {$local}");
+        exit;
+    }
+
 /**
  * Busca o ambiente de desenvolvimento 
  * @return boll retorna valor true ser for em localhost e false para ambiente de produção
