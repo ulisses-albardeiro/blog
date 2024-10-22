@@ -5,19 +5,46 @@
 <!-- card -->
 <div class="container mt-5">
     <div class="row">
-        {% for post in posts %}
-        <div class="col-md-4">
-            <div class="card">
-                <img class="card-img-top" src="..." alt="Card image cap">
-                <div class="card-body">
-                    <a href="{{url('post/'~post.id)}}">
-                        <h5 class="card-title">{{ post.titulo }}</h5>
-                        <p class="card-text">{{ textoResumido(post.texto, 200) }}</p>
-                    </a>
+        <!-- Cards Section -->
+        <div class="col-md-8">
+            <div class="row">
+                {% for post in posts %}
+                <div class="col-md-6 mb-4"> <!-- Cada card ocupa 4 colunas (2 cards por linha) -->
+                    <div class="card">
+                        <img class="card-img-top" src="..." alt="Card image cap">
+                        <div class="card-body">
+                            <a class="text-decoration-none text-reset" href="{{url('post/'~post.id)}}">
+                                <h5 class="card-title">{{ post.titulo }}</h5>
+                                <p class="card-text">{{ textoResumido(post.texto, 150) }}</p>
+                            </a>
+                        </div>
+                    </div>
                 </div>
+                {% endfor %}
             </div>
         </div>
-        {% endfor %}
+
+        <!-- Sidebar Section -->
+        <div class="col-md-4"> <!-- Sidebar ocupa 4 colunas ao lado dos cards -->
+            <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white">
+                <a href="/"
+                    class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
+                    <span class="fs-5 fw-bold">Categorias</span>
+                </a>
+                {% for categoria in categorias %}
+                <div class="list-group list-group-flush border-bottom scrollarea">
+                    <a href="#" class="list-group-item list-group-item-action py-3 lh-tight" aria-current="true">
+                        <div class="d-flex w-100 align-items-center justify-content-between">
+                            <strong class="mb-1">{{categoria.titulo}}</strong>
+                        </div>
+                        <div class="col-10 mb-1 small">S{{categoria.texto}}</div>
+                    </a>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
     </div>
 </div>
 

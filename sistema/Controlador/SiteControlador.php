@@ -1,8 +1,11 @@
 <?php
 
 namespace sistema\Controlador;
+
+use sistema\Modelos\CategoriaModelo;
 use sistema\Modelos\PostModelo;
 use sistema\Nucleo\Controlador;
+use sistema\Nucleo\Helpers;
 
 class SiteControlador extends Controlador 
 {
@@ -14,10 +17,12 @@ class SiteControlador extends Controlador
 
     public function index():void
     {
-        $posts = (new PostModelo())->busca();
+        $posts = (new PostModelo())->busca();//Busca o titulo e textos do post
+        $categorias = (new CategoriaModelo())->buscaCategoria(); //Busca a categoria e a descrição
         echo $this->template->rendenizar('index.html', [
             'titulo' => 'Principal',
-            'posts' => $posts //retorna os dados dos posts para a index
+            'posts' => $posts, //retorna os dados da tabela posts para a index
+            'categorias' => $categorias //retorna os dados da tabela categoria para a index
         ]);
     }
 
@@ -31,6 +36,9 @@ class SiteControlador extends Controlador
     public function post(int $id):void
     {
         $post = (new PostModelo())->buscaPorId($id);
+        if(!$post){
+            Helpers::redirecionar('404');
+        }
         echo $this->template->rendenizar('post.html', [
             'post' => $post
         ]);
