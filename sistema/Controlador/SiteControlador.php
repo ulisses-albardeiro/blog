@@ -1,7 +1,7 @@
 <?php
 
 namespace sistema\Controlador;
-
+use sistema\Modelos\PostModelo;
 use sistema\Nucleo\Controlador;
 
 class SiteControlador extends Controlador 
@@ -14,9 +14,10 @@ class SiteControlador extends Controlador
 
     public function index():void
     {
+        $posts = (new PostModelo())->busca();
         echo $this->template->rendenizar('index.html', [
             'titulo' => 'Principal',
-            'subtitulo' => 'teste de subtitulo'
+            'posts' => $posts //retorna os dados dos posts para a index
         ]);
     }
 
@@ -24,7 +25,14 @@ class SiteControlador extends Controlador
     {
         echo $this->template->rendenizar('sobre.html', [
             'titulo' => 'Sobre',
-            'subtitulo' => 'teste de subtitulo'
+        ]);
+    }
+
+    public function post(int $id):void
+    {
+        $post = (new PostModelo())->buscaPorId($id);
+        echo $this->template->rendenizar('post.html', [
+            'post' => $post
         ]);
     }
 

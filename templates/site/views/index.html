@@ -2,6 +2,23 @@
 
 {% block conteudo %}
 
-<h1>Index</h1>
+<!-- card -->
+<div class="container mt-5">
+    <div class="row">
+        {% for post in posts %}
+        <div class="col-md-4">
+            <div class="card">
+                <img class="card-img-top" src="..." alt="Card image cap">
+                <div class="card-body">
+                    <a href="{{url('post/'~post.id)}}">
+                        <h5 class="card-title">{{ post.titulo }}</h5>
+                        <p class="card-text">{{ textoResumido(post.texto, 200) }}</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 
-{% endblock%}
+{% endblock %}

@@ -6,12 +6,20 @@ use sistema\Nucleo\Conexao;
 
 class PostModelo{
 
-    public function ler(int $id = null): array
+    public function busca(int $id = null): array
     {
-        $where = ($id ? "WHERE id = {$id}" : "" );
-        $query = "SELECT * FROM posts {$where}";
+        $query = "SELECT * FROM posts";
         $stmt = Conexao::getInstancia()->query($query);
         $result = $stmt->fetchAll();
+
+        return $result;
+    }
+
+    public function buscaPorId(int $id):bool | array
+    {
+        $query = "SELECT * FROM posts WHERE id = {$id}";
+        $stmt = Conexao::getInstancia()->query($query);
+        $result = $stmt->fetch();
 
         return $result;
     }

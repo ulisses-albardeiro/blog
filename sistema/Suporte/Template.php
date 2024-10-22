@@ -27,14 +27,18 @@ class Template
     private function helpers():void
     {
         array(
+            //add metodos ao twig para poder usar nas views
             $this->twig->addFunction(
                 new \Twig\TwigFunction('url', function(string $url = null){
                     return Helpers::url($url);
                 })
             ),
-            /* $this->twig->addFunction(
-                new \Twig\TwigFunction()
-            ) */
+            $this->twig->addFunction(
+                new \Twig\TwigFunction('textoResumido', function (string $text, int $limit, string $continues = '...') {
+                    return Helpers::textoResumido($text, $limit, $continues);
+                })
+            )
+            
         );
     }
 }
