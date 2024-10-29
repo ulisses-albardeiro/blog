@@ -1,0 +1,18 @@
+<div class="col-md-4">
+    <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white">
+        <a href="/" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
+            <span class="fs-5 fw-bold">Categorias</span>
+        </a>
+        {% for categoria in categorias %}
+        <div class="list-group list-group-flush border-bottom scrollarea">
+            <a href="{{url('categorias/'~categoria.id)}}" class="list-group-item list-group-item-action py-3 lh-tight" aria-current="true">
+                <div class="d-flex w-100 align-items-center justify-content-between">
+                    <strong class="mb-1">{{categoria.titulo}}</strong>
+                </div>
+                <div class="col-10 mb-1 small">S{{categoria.texto}}</div>
+            </a>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
