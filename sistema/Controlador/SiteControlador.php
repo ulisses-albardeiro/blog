@@ -26,6 +26,21 @@ class SiteControlador extends Controlador
         ]);
     }
 
+    public function pesquisa():void 
+    {
+        $pesquisa = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+        if(isset($pesquisa)){
+            $posts = (new PostModelo())->pesquisa($pesquisa['pesquisa']);
+            $categorias = (new CategoriaModelo())->busca();
+
+            echo $this->template->rendenizar('pesquisa.html', [
+                'posts' => $posts,
+                'categorias' => $categorias
+            ]);
+            
+        }
+    }
+
     public function sobre():void
     {
         echo $this->template->rendenizar('sobre.html', [
@@ -44,6 +59,8 @@ class SiteControlador extends Controlador
         echo $this->template->rendenizar('post.html', [
             'post' => $post, 
             'categorias' => $categorias 
+
+
         ]);
     }
 

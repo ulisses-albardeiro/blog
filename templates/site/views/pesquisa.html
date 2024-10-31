@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+
+<!-- card -->
+<div class="container mt-5">
+    <div class="row">
+        <!-- Cards Section -->
+        <div class="col-md-8">
+
+            {%if posts%}
+
+            <div class="row">
+                {% for post in posts %}
+                <div class="col-md-6 mb-4"> <!-- Cada card ocupa 4 colunas (2 cards por linha) -->
+                    <div class="card">
+                        <img class="card-img-top" src="..." alt="Card image cap">
+                        <div class="card-body">
+                            <a class="text-decoration-none text-reset" href="{{url('post/'~post.id)}}">
+                                <h5 class="card-title">{{ post.titulo }}</h5>
+                                <p class="card-text">{{ textoResumido(post.texto, 150) }}</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            {% else %}
+
+            <div class="alert alert-warning" role="alert">
+                Nenhum resultado para essa pesquisa!
+            </div>
+
+            {% endif %}
+
+        </div>
+
+      {% include 'sidebar.html' %}
+
+    </div>
+</div>
+
+{% endblock %}

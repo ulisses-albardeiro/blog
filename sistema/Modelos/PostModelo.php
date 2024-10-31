@@ -6,9 +6,18 @@ use sistema\Nucleo\Conexao;
 
 class PostModelo{
 
-    public function busca(int $id = null): array
+    public function busca(): array
     {
-        $query = "SELECT * FROM posts";
+        $query = "SELECT * FROM posts WHERE status = 1";
+        $stmt = Conexao::getInstancia()->query($query);
+        $result = $stmt->fetchAll();
+
+        return $result;
+    }
+
+    public function pesquisa($pesquisa)
+    {
+        $query = "SELECT * FROM posts WHERE status = 1 AND titulo LIKE '%{$pesquisa}%'";
         $stmt = Conexao::getInstancia()->query($query);
         $result = $stmt->fetchAll();
 
