@@ -14,6 +14,29 @@ try {
 
     SimpleRouter::get(URL_SITE . '404', 'SiteControlador@erro404');
 
+    //Grupo de Rotas para painel de controle do Site
+    SimpleRouter::group(['namespace' => 'Admin'], function () {
+        SimpleRouter::get(URL_ADMIN.'dashboard', 'AdminDashboard@dashboard');
+
+        //Rotas Categorias
+        SimpleRouter::get(URL_ADMIN.'categorias/listar', 'AdminCategorias@listar');
+        SimpleRouter::match(['get', 'post'], URL_ADMIN. 'categorias/cadastrar', 'AdminCategorias@cadastrarCategoria');
+
+
+
+        SimpleRouter::match(['get', 'post'], URL_ADMIN. 'categorias/editar/{id}', 'AdminCategorias@editarCategoria');
+
+
+
+        
+        //Rotas Posts
+        SimpleRouter::get(URL_ADMIN. 'posts/listar', 'AdminPosts@listar');
+        SimpleRouter::match(['get', 'post'], URL_ADMIN. 'posts/cadastrar', 'AdminPosts@cadastrarPost'); 
+        SimpleRouter::match(['get', 'post'], URL_ADMIN. 'posts/editar/{id}', 'AdminPosts@editarPost');
+
+
+    });
+
     SimpleRouter::start();
 } catch (Exception $e) {
 

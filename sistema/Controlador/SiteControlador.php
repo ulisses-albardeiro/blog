@@ -50,7 +50,7 @@ class SiteControlador extends Controlador
 
     public function post(int $id):void
     {
-        $post = (new PostModelo())->buscaPorId($id);
+        $post = (new PostModelo())->buscaPorIdPost($id);
         $categorias = (new CategoriaModelo())->busca(); //Busca a categoria e a descrição
         if(!$post){
             Helpers::redirecionar('404');

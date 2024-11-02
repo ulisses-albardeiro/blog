@@ -7,10 +7,11 @@ define('DB_HOST', 'localhost');
 define('DB_USUARIO', 'root');
 define('DB_SENHA', '');
 
-define('SITE_NAME', 'Ulisses Alba');
-define('SITE_DESC', 'Programação e Web');
+define('SITE_NAME', 'Site');
+define('SITE_DESC', 'Projeto');
 
 define('PRODUCTION_URL', 'https://ulissesalba.com');
 define('DEVELOPMENT_URL', 'http://localhost/blog');
 
 define('URL_SITE', 'blog/');
+define('URL_ADMIN','blog/admin/');

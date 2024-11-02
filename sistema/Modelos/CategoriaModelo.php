@@ -24,4 +24,20 @@ class CategoriaModelo{
         return $result;
 
     }
+
+    public function inserirCategoria(array $dados):void 
+    {
+        $query = "INSERT INTO categorias (titulo, descricao, status) VALUES (?, ?, ?)";
+        $stmt = Conexao::getInstancia()->prepare($query);
+        $stmt->execute([$dados['titulo'], $dados['descricao'], $dados['status']]);
+    }
+
+    public function buscaPorIdCategoria(int $id):bool | array
+    {
+        $query = "SELECT * FROM categorias WHERE id = {$id}";
+        $stmt = Conexao::getInstancia()->query($query);
+        $result = $stmt->fetch();
+
+        return $result;
+    }
 }
