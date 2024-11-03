@@ -21,9 +21,6 @@ try {
         //Rotas Categorias
         SimpleRouter::get(URL_ADMIN.'categorias/listar', 'AdminCategorias@listar');
         SimpleRouter::match(['get', 'post'], URL_ADMIN. 'categorias/cadastrar', 'AdminCategorias@cadastrarCategoria');
-
-
-
         SimpleRouter::match(['get', 'post'], URL_ADMIN. 'categorias/editar/{id}', 'AdminCategorias@editarCategoria');
 
 
@@ -33,6 +30,8 @@ try {
         SimpleRouter::get(URL_ADMIN. 'posts/listar', 'AdminPosts@listar');
         SimpleRouter::match(['get', 'post'], URL_ADMIN. 'posts/cadastrar', 'AdminPosts@cadastrarPost'); 
         SimpleRouter::match(['get', 'post'], URL_ADMIN. 'posts/editar/{id}', 'AdminPosts@editarPost');
+        SimpleRouter::get(URL_ADMIN. 'posts/excluir/{id}', 'AdminPosts@excluirPost');
+        SimpleRouter::get(URL_ADMIN. 'categorias/excluir/{id}', 'AdminCategorias@excluirCategoria');
 
 
     });

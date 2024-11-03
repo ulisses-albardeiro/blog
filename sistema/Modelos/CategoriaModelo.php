@@ -5,7 +5,7 @@ use sistema\Nucleo\Conexao;
 
 class CategoriaModelo{
 
-    public function busca(): array
+    public function buscaCategoria(): array
     {
         $query = "SELECT * FROM categorias";
         $stmt = Conexao::getInstancia()->query($query);
@@ -39,5 +39,19 @@ class CategoriaModelo{
         $result = $stmt->fetch();
 
         return $result;
+    }
+
+    public function atualizarCategoria(int $id, array $dados): void
+    {
+        $query = "UPDATE categorias SET titulo = ?, descricao = ?, status = ? WHERE id = ?";
+        $stmt = Conexao::getInstancia()->prepare($query);
+        $stmt->execute([$dados['titulo'], $dados['descricao'], $dados['status'], $id]);
+    }
+
+    public function deletarCategoria(int $id): void
+    {
+        $query = "DELETE FROM categorias WHERE id = ?";
+        $stmt = Conexao::getInstancia()->prepare($query);
+        $stmt->execute([$id]);
     }
 }

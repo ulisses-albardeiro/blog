@@ -3,6 +3,7 @@
 namespace sistema\Suporte;
 use Twig\Lexer;
 use sistema\Nucleo\Helpers;
+use sistema\Nucleo\Mensagem;
 
 class Template
 {
@@ -36,6 +37,12 @@ class Template
             $this->twig->addFunction(
                 new \Twig\TwigFunction('textoResumido', function (string $text, int $limit, string $continues = '...') {
                     return Helpers::textoResumido($text, $limit, $continues);
+                })
+            ),
+
+            $this->twig->addFunction(
+                new \Twig\TwigFunction('flash', function(){
+                    return Helpers::flash();
                 })
             )
             

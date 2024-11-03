@@ -1,6 +1,7 @@
 <?php
 
 namespace sistema\Nucleo;
+use sistema\Nucleo\Sessao;
 
 class Helpers
 {
@@ -145,5 +146,16 @@ class Helpers
         } else {
             return $yers == 1 ? 'há 1 ano' : 'há ' . $yers . ' anos';
         }
+    }
+
+
+    public static function flash(): ? string
+    {
+        $sessao = new Sessao();
+        if($flash = $sessao->flash()){
+            echo $flash;
+        }
+
+        return null;
     }
 }

@@ -12,12 +12,27 @@ class Mensagem
         return $this->rendenizar();
     }
 
-    public function sucesso(string $mensagem): Mensagem
+    public function mensagemSucesso(string $mensagem): Mensagem
     {
         $this->css = 'alert alert-success';
         $this->texto = $this->filtrar($mensagem);
         return $this;
     }
+
+    public function mensagemErro(string $mensagem): Mensagem
+    {
+        $this->css = 'alert alert-danger';
+        $this->texto = $this->filtrar($mensagem);
+        return $this;
+    }
+
+    public function mensagemAtencao(string $mensagem): Mensagem
+    {
+        $this->css = 'alert alert-warning';
+        $this->texto = $this->filtrar($mensagem);
+        return $this;
+    }
+
 
     public function rendenizar(): string
     {
@@ -27,5 +42,10 @@ class Mensagem
     private function filtrar(string $mensagem): string
     {
         return filter_var($mensagem, FILTER_SANITIZE_SPECIAL_CHARS);
+    }
+
+    public function flash():void
+    {
+        (new Sessao())->criarSessao('flash', $this);
     }
 }

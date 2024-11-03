@@ -9,9 +9,9 @@ class AdminPosts extends AdminControlador
 {
     public function listar():void
     {
-        $posts = (new PostModelo())->busca();//Busca o titulo e textos do post
+        $posts = (new PostModelo())->buscaPosts();//Busca o titulo e textos do post
         echo $this->template->rendenizar('posts/listar.html', [
-            'posts' => $posts, //retorna os dados da tabela posts para a index
+            'posts' => $posts
         ]);
     }
 
@@ -21,27 +21,43 @@ class AdminPosts extends AdminControlador
 
         if(isset($dados)){
             (new PostModelo())->inserirPosts($dados);
+            $this->mensagem->mensagemSucesso('Post cadastrado com sucesso')->flash();
             Helpers::redirecionar('admin/posts/listar');
         }
 
         //lista no select as categorias
-        $categorias = (new CategoriaModelo())->busca();
+        $categorias = (new CategoriaModelo())->buscaCategoria();
         echo $this->template->rendenizar('posts/cadastrar.html', [
             'categorias' => $categorias
         ]);
+
     }
+
 
     public function editarPost(int $id)
     {
-        $post = (new PostModelo())->buscaPorIdPost($id);
 
-        if(!$post){
-            Helpers::redirecionar('404');
+        $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+        if(isset($dados)){
+            (new PostModelo())->atualizarPost($id, $dados);
+            $this->mensagem->mensagemSucesso('Post editado com sucesso')->flash();
+            Helpers::redirecionar("admin/posts/listar");
         }
+
+
+        $post = (new PostModelo())->buscaPorIdPost($id); //Lista od dados do post na edição
+        $categorias = (new CategoriaModelo())->buscaCategoria(); //Lista os dados das categorias na edição
         echo $this->template->rendenizar('posts/cadastrar.html', [
-            'post' => $post
+            'post' => $post,
+            'categorias' => $categorias
         ]);
 
+    }
+
+    public function excluirPost(int $id):void
+    {
+        (new PostModelo())->deletarPost($id);
+            Helpers::redirecionar("admin/posts/listar");
     }
 
 }
