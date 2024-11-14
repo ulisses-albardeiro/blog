@@ -17,20 +17,21 @@ class SiteControlador extends Controlador
 
     public function index():void
     {
-        $posts = (new PostModelo())->buscaPosts();//Busca o titulo e textos do post
+        $posts = (new PostModelo())->busca();//Busca o titulo e textos do post
         $categorias = (new CategoriaModelo())->buscaCategoria(); //Busca a categoria e a descrição
         echo $this->template->rendenizar('index.html', [
             'titulo' => 'Principal',
-            'posts' => $posts, //retorna os dados da tabela posts para a index
+            'posts' => $posts->resultado(true), //retorna os dados da tabela posts para a index
             'categorias' => $categorias //retorna os dados da tabela categoria para a index
         ]);
     }
 
     public function pesquisa():void 
     {
-        $pesquisa = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+        $pesquisa = filter_input(INPUT_POST, 'pesquisa', FILTER_DEFAULT);
+
         if(isset($pesquisa)){
-            $posts = (new PostModelo())->pesquisa($pesquisa['pesquisa']);
+            $posts = (new PostModelo())->busca("status = 1 AND titulo LIKE '%{$pesquisa}%'")->resultado(true);
             $categorias = (new CategoriaModelo())->buscaCategoria();
 
             echo $this->template->rendenizar('pesquisa.html', [
@@ -50,7 +51,7 @@ class SiteControlador extends Controlador
 
     public function post(int $id):void
     {
-        $post = (new PostModelo())->buscaPorIdPost($id);
+        $post = (new PostModelo())->busca($id);
         $categorias = (new CategoriaModelo())->buscaCategoria(); //Busca a categoria e a descrição
         if(!$post){
             Helpers::redirecionar('404');

@@ -16,15 +16,19 @@ try {
 
     //Grupo de Rotas para painel de controle do Site
     SimpleRouter::group(['namespace' => 'Admin'], function () {
+
+        //Rota para a página de login do painel
+        SimpleRouter::match(['get', 'post'], URL_ADMIN. 'login', 'AdminLogin@login');
+
+        //Rota para o dashboard
         SimpleRouter::get(URL_ADMIN.'dashboard', 'AdminDashboard@dashboard');
+        SimpleRouter::get(URL_ADMIN.'sair', 'AdminDashboard@sair');
+
 
         //Rotas Categorias
         SimpleRouter::get(URL_ADMIN.'categorias/listar', 'AdminCategorias@listar');
         SimpleRouter::match(['get', 'post'], URL_ADMIN. 'categorias/cadastrar', 'AdminCategorias@cadastrarCategoria');
         SimpleRouter::match(['get', 'post'], URL_ADMIN. 'categorias/editar/{id}', 'AdminCategorias@editarCategoria');
-
-
-
         
         //Rotas Posts
         SimpleRouter::get(URL_ADMIN. 'posts/listar', 'AdminPosts@listar');
@@ -32,7 +36,6 @@ try {
         SimpleRouter::match(['get', 'post'], URL_ADMIN. 'posts/editar/{id}', 'AdminPosts@editarPost');
         SimpleRouter::get(URL_ADMIN. 'posts/excluir/{id}', 'AdminPosts@excluirPost');
         SimpleRouter::get(URL_ADMIN. 'categorias/excluir/{id}', 'AdminCategorias@excluirCategoria');
-
 
     });
 
@@ -44,4 +47,5 @@ try {
     } else {
         Helpers::redirecionar('404');
     }
+    
 }

@@ -36,15 +36,19 @@ class Mensagem
 
     public function rendenizar(): string
     {
-        return "<div class='{$this->css}'>{$this->texto}</div>";
+        return "<div class='{$this->css} alert alert-dismissible fade show d-flex justify-content-between align-items-center' role='alert'>
+                <span>{$this->texto}</span>
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Fechar'></button>
+            </div>";
     }
+
 
     private function filtrar(string $mensagem): string
     {
         return filter_var($mensagem, FILTER_SANITIZE_SPECIAL_CHARS);
     }
 
-    public function flash():void
+    public function flash(): void
     {
         (new Sessao())->criarSessao('flash', $this);
     }

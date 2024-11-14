@@ -16,8 +16,12 @@ class Conexao
 
             try {
                 self::$instancia = new PDO('mysql:dbname=' . DB_NOME . ';host=' . DB_HOST, DB_USUARIO, DB_SENHA, [
+                    //Erros de PDO serão todos exeção
                     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                    PDO::ATTR_CASE => PDO::CASE_NATURAL
+                    //Garante que o mesmo nome da coluna do banco seja utilizado
+                    PDO::ATTR_CASE => PDO::CASE_NATURAL,
+                    //Converte qualquer resultado em um objeto
+                    PDO::ATTR_DEFAULT_FETCH_MODE =>PDO::FETCH_OBJ
                 ]);
             } catch (PDOException $e) {
                 exit("Erro de conexão: " . $e->getMessage());
