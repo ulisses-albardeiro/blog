@@ -87,8 +87,10 @@
             <div class="navbar-collapse collapse">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item dropdown">
-                        <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
-                            <img src="{{url('templates/admin/assets/img/account.png')}}" class="avatar img-fluid" alt="">
+                        <a href="#" data-bs-toggle="dropdown" class="nav-link d-flex align-items-center">
+                            <img src="{{url('templates/admin/assets/img/account.png')}}" class="avatar img-fluid me-2" alt="">
+                            <span>{{usuario().nome}}</span>
+                            <i class="bi bi-chevron-down ms-2"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end rounded">
                             <li><a href="#" class="dropdown-item">Perfil</a></li>
@@ -97,6 +99,7 @@
                     </li>
                 </ul>
             </div>
+            
             
         </nav>
     

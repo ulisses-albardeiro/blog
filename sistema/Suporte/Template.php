@@ -1,6 +1,8 @@
 <?php
 
 namespace sistema\Suporte;
+
+use sistema\Controlador\UsuarioControlador;
 use Twig\Lexer;
 use sistema\Nucleo\Helpers;
 use sistema\Nucleo\Mensagem;
@@ -34,6 +36,7 @@ class Template
                     return Helpers::url($url);
                 })
             ),
+
             $this->twig->addFunction(
                 new \Twig\TwigFunction('textoResumido', function (string $text, int $limit, string $continues = '...') {
                     return Helpers::textoResumido($text, $limit, $continues);
@@ -43,7 +46,13 @@ class Template
             $this->twig->addFunction(
                 new \Twig\TwigFunction('flash', function(){
                     return Helpers::flash();
+                }),
+
+            $this->twig->addFunction(
+                new \Twig\TwigFunction('usuario', function(){
+                    return UsuarioControlador::usuario();
                 })
+            )
             )
             
         );
