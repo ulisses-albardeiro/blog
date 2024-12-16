@@ -1,26 +1,19 @@
-<header class="p-3 bg-dark text-white">
-    <div class="container">
-      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
-        </a>
+<div class="container">
+  <header class="d-flex flex-wrap justify-content-between align-items-center py-2 mb-0 border-bottom">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+      <img class="logo-header" src="{{ url('templates/site/assets/img/logo-2.png') }}" alt="logo">
+    </a>
 
-        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="{{url()}}" class="nav-link px-2 text-secondary">Home</a></li>
-          <li><a href="{{url('sobre')}}" class="nav-link px-2 text-white">Sobre</a></li>
-        </ul>
+           <div class="mobile-menu">
+            <i id="burger-menu" class="bi bi-list"></i>
+           </div>
 
-        <form action="{{ url('pesquisa') }}" method="POST" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-          <div class="input-group mb-3">
-            <input name="pesquisa" type="text" class="form-control" placeholder="Pesquisar..." aria-label="Recipient's username" aria-describedby="button-addon2">
-            <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i class="fa-solid fa-magnifying-glass"></i></button>
-          </div>
-        </form>
+    <ul class="nav nav-pills">
+      <li class="nav-item"><a href="#" class="nav-link">HOME</a></li>
+      <li class="nav-item"><a href="#" class="nav-link">BLOG</a></li>
+    </ul>
 
-        <div class="text-end">
-          <button type="button" class="btn btn-outline-light me-2">Login</button>
-          <button type="button" class="btn btn-warning">Sign-up</button>
-        </div>
-      </div>
-    </div>
+
+  
   </header>
+</div>
