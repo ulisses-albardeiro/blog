@@ -2,131 +2,43 @@
 
 {% block conteudo %}
 
-<!-- Banner -->
-<div>
-    <img src="{{ url('templates/site/assets/img/banner.png') }}" class="w-100" alt="...">
-</div>
-<!-- end Banner -->
+<main>
 
-<!-- Sobre -->
-<div class="container">
-    <h2 class="text-center pt-5 fs-2 fw-bold">Sobre Mim</h2>
-    <p class="text-center pt-3 fs-5">
-        Sou <strong>Ulisses Alba</strong>, Desenvolvedor Full Stack com sólida experiência
-        em PHP (arquitetura orientada a objetos e programação procedural), desenvolvimento de APIs REST e versionamento
-        de código. Possuo conhecimento e experiência em tecnologias front-end como Bootstrap, CSS, HTML e JavaScript
-        para manipulação do DOM. Minha experiência também abrange a criação e otimização de consultas SQL para interação
-        com bancos de dados MySQL e MariaDB.
-    </p>
-</div>
-<!-- end Sobre -->
-
-<!-- Posts -->
-<div class="">
-    <h2 class="text-center pt-5 fs-2 fw-bold">Publicações Recentes</h2>
-
-    <!-- Carousel -->
-    <div id="postsCarousel" class="carousel slide" data-bs-ride="carousel">
-        <!-- Indicadores -->
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#postsCarousel" data-bs-slide-to="0" class="active"></button>
-            <button type="button" data-bs-target="#postsCarousel" data-bs-slide-to="1"></button>
-        </div>
-
-        <!-- Itens do carrossel -->
-        <div class="carousel-inner container">
-            <!-- Slide 1 -->
-            <div class="carousel-item active">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card bg-primary">
-                            <img src="{{ url('templates/site/assets/img/card-img.png') }}" class="card-img-top"
-                                alt="...">
-                            <div class="card-body" style="padding-bottom: 150px;">
-                                <h5 class="fs-4 fw-bolder">A maior linguagem da Web</h5>
-                                <p>Some quick example text to build on the card title and make up the bulk of the card's
-                                    content.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card">
-                            <img src="{{ url('templates/site/assets/img/card-img.png') }}" class="card-img-top"
-                                alt="...">
-                            <div class="card-body" style="padding-bottom: 150px;">
-                                <h5 class="fs-4 fw-bolder">A maior linguagem da Web</h5>
-                                <p>Some quick example text to build on the card title and make up the bulk of the card's
-                                    content.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card">
-                            <img src="{{ url('templates/site/assets/img/card-img.png') }}" class="card-img-top"
-                                alt="...">
-                            <div class="card-body" style="padding-bottom: 150px;">
-                                <h5 class="fs-4 fw-bolder">A maior linguagem da Web</h5>
-                                <p>Some quick example text to build on the card title and make up the bulk of the card's
-                                    content.</p>
-                            </div>
-                        </div>
-                    </div>
+    <div>
+        <div class="carousel-inner">
+            <div>
+                <img src="{{url('templates/site/assets/img/banner.png')}}" class="d-block w-100" alt="...">
+                <div class="carousel-caption  d-md-block w-50">
+                    <h1 class="w-100">Transformando Código em Soluções: Descubra Insights sobre PHP, Desenvolvimento de
+                        Software e Crescimento Pessoal.</h1>
                 </div>
             </div>
-
-            <!-- Slide 2 -->
-            <div class="carousel-item">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card">
-                            <img src="{{ url('templates/site/assets/img/card-img.png') }}" class="card-img-top"
-                                alt="...">
-                            <div class="card-body" style="padding-bottom: 150px;">
-                                <h5 class="fs-4 fw-bolder">A maior linguagem da Web</h5>
-                                <p>Some quick example text to build on the card title and make up the bulk of the card's
-                                    content.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card">
-                            <img src="{{ url('templates/site/assets/img/card-img.png') }}" class="card-img-top"
-                                alt="...">
-                            <div class="card-body" style="padding-bottom: 150px;">
-                                <h5 class="fs-4 fw-bolder">A maior linguagem da Web</h5>
-                                <p>Some quick example text to build on the card title and make up the bulk of the card's
-                                    content.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card">
-                            <img src="{{ url('templates/site/assets/img/card-img.png') }}" class="card-img-top"
-                                alt="...">
-                            <div class="card-body" style="padding-bottom: 150px;">
-                                <h5 class="fs-4 fw-bolder">A maior linguagem da Web</h5>
-                                <p>Some quick example text to build on the card title and make up the bulk of the card's
-                                    content.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
         </div>
-
-        <!-- Controles -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#postsCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Anterior</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#postsCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Próximo</span>
-        </button>
     </div>
 
-    <!-- end Carousel -->
-</div>
+    <!-- Marketing messaging and featurettes
+    ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
 
-{% endblock %}
+    <div class="container marketing">
+
+        <div class="row featurette pt-5">
+            <div class="col-md-7 order-md-2 pt-5">
+                <h2 class="featurette-heading">Sou Ulisses Alba, Desenvolvedor Full Stack</h2>
+                <p class="lead">Com sólida experiência em PHP, desenvolvimento de APIs REST e versionamento de
+                    código. Possuo conhecimento e experiência em tecnologias front-end como Bootstrap, CSS, HTML e
+                    JavaScript para manipulação do DOM.
+                    Minha experiência também abrange a criação e otimização de consultas SQL para interação com bancos
+                    de dados MySQL e MariaDB.</p>
+            </div>
+            <div class="col-md-5 order-md-1">
+                <img style="max-width: 450px;" src="{{url('templates/site/assets/img/foto.png')}}" alt="">
+
+            </div>
+        </div>
+        <!-- /END THE FEATURETTES -->
+
+    </div><!-- /.container -->
+
+
+    {% endblock %}
