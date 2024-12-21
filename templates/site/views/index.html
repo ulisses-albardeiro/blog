@@ -9,36 +9,126 @@
             <div>
                 <img src="{{url('templates/site/assets/img/banner.png')}}" class="d-block w-100" alt="...">
                 <div class="carousel-caption  d-md-block w-50">
-                    <h1 class="w-100">Transformando Código em Soluções: Descubra Insights sobre PHP, Desenvolvimento de
+                    <h1 class="w-100">Transformando Códigos em Soluções: Descubra Insights sobre PHP, Desenvolvimento de
                         Software e Crescimento Pessoal.</h1>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Marketing messaging and featurettes
-    ================================================== -->
-    <!-- Wrap the rest of the page in another container to center all the content. -->
-
-    <div class="container marketing">
-
-        <div class="row featurette pt-5">
-            <div class="col-md-7 order-md-2 pt-5">
+    <div class="container marketing pb-5 ">
+        <!-- Sobre mim -->
+        <div class="d-flex flex-column justify-content-center align-items-center">
+            <h3 style="color: #050419;" class="fs-1 text-center pt-5">Sobre Mim</h3>
+            <div class="mx-auto my-5 bg-primary" style="width: 150px; height: 4px;"></div>
+        </div>
+        <div class="row featurette pt-5 pb-5">
+            <div class="col-md-7 order-md-2">
                 <h2 class="featurette-heading">Sou Ulisses Alba, Desenvolvedor Full Stack</h2>
                 <p class="lead">Com sólida experiência em PHP, desenvolvimento de APIs REST e versionamento de
                     código. Possuo conhecimento e experiência em tecnologias front-end como Bootstrap, CSS, HTML e
                     JavaScript para manipulação do DOM.
                     Minha experiência também abrange a criação e otimização de consultas SQL para interação com bancos
                     de dados MySQL e MariaDB.</p>
+                <a style="background-color: #050419; color: white;" class="btn" href="http://" role="button">Entrar em
+                    Contato</a>
             </div>
+
             <div class="col-md-5 order-md-1">
-                <img style="max-width: 450px;" src="{{url('templates/site/assets/img/foto.png')}}" alt="">
+                <img style="max-width: 420px;" src="{{url('templates/site/assets/img/foto.png')}}" alt="">
 
             </div>
         </div>
-        <!-- /END THE FEATURETTES -->
-
     </div><!-- /.container -->
+
+    <!-- Cards Blog -->
+    <div class="pt-5 pb-5" style="background-color: #050419;">
+        <div class="container my-5">
+            <h2 class="mb-4 text-center text-white">Últimos Posts</h2>
+            <div class="mx-auto my-5 bg-primary" style="width: 150px; height: 4px;"></div>
+            <div id="postCarousel" class="carousel slide" data-bs-ride="carousel">
+                <!-- Indicadores -->
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#postCarousel" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#postCarousel" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#postCarousel" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+
+                <!-- Slides -->
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="card">
+                                    <img src="{{url('templates/site/assets/img/card-img.png')}}" class="card-img-top"
+                                        alt="Post 1">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Título do Post 1</h5>
+                                        <p class="card-text">Resumo ou descrição curta do primeiro post. Este é um
+                                            exemplo.</p>
+                                        <a href="#" class="btn btn-primary">Ler Mais</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card">
+                                    <img src="{{url('templates/site/assets/img/card-img.png')}}" class="card-img-top"
+                                        alt="Post 2">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Título do Post 2</h5>
+                                        <p class="card-text">Resumo ou descrição curta do segundo post. Confira agora!
+                                        </p>
+                                        <a href="#" class="btn btn-primary">Ler Mais</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card">
+                                    <img src="{{url('templates/site/assets/img/card-img.png')}}" class="card-img-top"
+                                        alt="Post 3">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Título do Post 3</h5>
+                                        <p class="card-text">Resumo ou descrição curta do terceiro post. Não perca!</p>
+                                        <a href="#" class="btn btn-primary">Ler Mais</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Mais slides -->
+                    <div class="carousel-item">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="card">
+                                    <img src="{{url('templates/site/assets/img/card-img.png')}}" class="card-img-top"
+                                        alt="Post 4">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Título do Post 4</h5>
+                                        <p class="card-text">Resumo ou descrição curta do quarto post.</p>
+                                        <a href="#" class="btn btn-primary">Ler Mais</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Adicione mais colunas se necessário -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controles -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#postCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Anterior</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#postCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Próximo</span>
+                </button>
+            </div>
+        </div>
+    </div>
 
 
     {% endblock %}

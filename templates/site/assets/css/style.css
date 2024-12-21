@@ -6,3 +6,12 @@
   transform: translate(-50%, -50%);
   text-align: center;
 }
+
+/* footer */
+footer .d-flex.gap-3 a {
+  font-size: 30px;
+  color: #050419; /* Cor padrão dos ícones */
+}
+
+
+
