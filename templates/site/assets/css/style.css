@@ -1,3 +1,62 @@
+/* fotes google fonts */
+
+@import url(https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap);
+
+@import url(https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap);
+
+
+/* foto sobre mim */
+img.foto-pessoal {
+  position: relative;
+  bottom: 50px;
+
+}
+
+/* estilo botão sobre mim */
+a.btn {
+  height: 60px !important;
+  background-color: #1f95f3 !important; 
+  font-weight: 600 !important;
+  padding-top: 17px !important;
+  transition: 0.6s !important;
+}
+
+/* efeito hover botão sobre mim */
+a.btn:hover {
+  background-color: #0068bb !important;
+}
+
+/* titulo sobre mim */
+h2.featurette-heading {
+  position: relative;
+  bottom: 15px;
+}
+/* descrição do sobre mim */
+p.lead {
+  position: relative;
+  bottom: 8px;
+  font-family: Poppins;
+}
+
+/* sobre mim */
+
+h3.fs-1.text-center.pt-5 {
+  position: relative;
+  top: 50px;
+}
+
+/* quadrado azul */
+
+div.mx-auto.my-5.bg-primary {
+  position: relative;
+  
+}
+/* fonte pra o site todo */
+
+body{
+  font-family: Montserrat;
+}
+
 /* Escrita banner */
 .carousel-caption {
   position: absolute;
@@ -13,5 +72,18 @@ footer .d-flex.gap-3 a {
   color: #050419; /* Cor padrão dos ícones */
 }
 
+ /* cor titulo footer */
+div div h4 {
+  color: #050419;
+}
 
 
+/* remoção do sublinhado nos links (categorias)  */
+a.text-decoration-none {
+  color: #050419;
+}
+/* estilo do categorias */
+div.card-header {
+  background-color: #050419;
+  color: white;
+}

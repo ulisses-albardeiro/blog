@@ -2,55 +2,146 @@
 
 {% block conteudo %}
 
-<!-- post -->
-<main class="container mt-5">
-    <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
-      <div class="col-md-6 px-0">
-        <h1 class="display-4 fst-italic">{{post.titulo}}</h1>
-      </div>
-    </div>
-  
-  
-    <div class="row g-5">
-      <div class="col-md-8">  
-        <article class="blog-post">
-          <h2 class="blog-post-title">Sample blog post</h2>
-          <p class="blog-post-meta">January 1, 2021 by <a href="#">Mark</a></p>
-            <p>{{post.texto}}</p>
+<!-- Page content-->
+<div style="padding-top: 100px;" class="bg-light" >
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <!-- Post content-->
+        <article>
+          <!-- Post header-->
+          <header class="mb-4">
+            <!-- Post title-->
+            <h1 class="fw-bolder mb-1">Exemplir de Título{{post.titulo}}</h1>
+            <!-- Post meta content-->
+            <div class="text-muted fst-italic mb-2">Posted on January 1, 2023 by Start Bootstrap</div>
+            <!-- Post categories-->
+            <a class="badge bg-primary text-decoration-none link-light" href="#!">PHP</a>
+            <a class="badge bg-primary text-decoration-none link-light" href="#!">HTML5</a>
+          </header>
+          <!-- Preview image figure-->
+          <figure class="mb-4"><img class="img-fluid rounded" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg"
+              alt="..." /></figure>
+          <!-- Post content-->
+          <section class="mb-5">
+            <p class="fs-5 mb-4">{{post.texto}} Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, aut
+              impedit veniam cupiditate enim tempora unde dolores nulla, delectus libero in illum a neque magni nobis
+              magnam? Sapiente sit, aperiam odit beatae distinctio officia quos fugiat repellat quidem assumenda
+              expedita illum possimus atque vero repellendus, dolore commodi similique perferendis magni fugit obcaecati
+              sed eum. Fuga, quos, laboriosam voluptate error ad nihil perspiciatis provident minus facere debitis
+              nesciunt fugit accusantium consequatur dicta! Consequatur, numquam nam neque minus blanditiis tempore
+              cumque atque voluptatibus debitis, officia mollitia reiciendis, optio adipisci quam. Alias ipsam at fugit
+              rerum, quae, quo vitae perferendis quisquam illo provident doloribus maxime error animi delectus, natus
+              dolores nam qui veniam voluptatem dicta. Dicta, alias. Quia, ad molestias nulla quas possimus facere nihil
+              nesciunt harum doloremque distinctio, mollitia rerum, qui ducimus assumenda laboriosam enim dolorum
+              tenetur delectus tempora ullam aut! A fugiat rem quidem non minus magnam cupiditate placeat quae, officia,
+              accusantium ad. Voluptatem animi delectus eaque odit eligendi, suscipit fuga ratione fugit illum
+              reiciendis consequatur, accusantium minima excepturi voluptates modi dolorum adipisci nulla exercitationem
+              vitae autem quaerat odio quos velit! Maiores architecto cupiditate aliquid fugiat laborum, eum quas
+              aspernatur minus sapiente harum excepturi rerum et necessitatibus natus consequuntur eius accusantium
+              culpa facilis! Laborum labore vel illum quam iure est assumenda aut adipisci porro non et omnis quas nihil
+              atque accusamus doloribus obcaecati aliquam, aspernatur cum esse. Voluptatem fugiat possimus, ab numquam
+              perferendis alias sit, reprehenderit nisi modi illum officiis sapiente esse ut quibusdam voluptates
+              facilis nulla delectus consectetur officia. Iusto architecto consequuntur pariatur nihil, excepturi
+              exercitationem natus eum suscipit laborum velit totam eos voluptates quas quos optio ipsam beatae tempore,
+              quia quaerat. Minima error architecto, necessitatibus a ratione magnam quos, amet impedit officia
+              provident sit harum. Tenetur pariatur iusto, fugiat minima at sint dignissimos molestiae eum unde in,
+              quidem quibusdam assumenda, neque beatae quam. Libero atque repellendus odit maiores consequuntur harum
+              iusto magni neque iste deleniti nemo iure repellat est quam a itaque fugit ex, assumenda ipsa? Similique,
+              dolore cumque! Corporis libero quia molestiae, voluptatum quae nam iure earum maxime obcaecati blanditiis
+              rem aliquam deleniti praesentium saepe dolorem! Quasi, cum maiores quos error mollitia laboriosam nisi.
+              Culpa similique incidunt numquam eius quidem aliquid, nisi distinctio magnam? Nulla consectetur tempora
+              iste saepe natus quo architecto quaerat dolore fuga quisquam! Officiis reprehenderit odio fugiat earum
+              laborum, nesciunt minima ex incidunt, animi consectetur veniam commodi autem asperiores, aut totam tempore
+              ducimus consequatur. Harum dicta suscipit, ratione ullam sit rerum cum expedita laudantium maiores
+              explicabo soluta quo? Iure consectetur perspiciatis, odio eum adipisci neque ipsum. Eos, quidem maiores.
+              Saepe deserunt sunt ipsam necessitatibus ut. Quia error voluptates placeat qui suscipit, cumque sequi
+              facere doloremque ullam, est sint mollitia voluptate neque dignissimos deleniti sed. Aperiam dolorem,
+              adipisci non iure sequi repellendus, ratione, dolorum error maxime beatae soluta saepe esse perspiciatis
+              laboriosam repellat nesciunt vel minus ipsam eos. Nesciunt delectus quaerat pariatur quasi tempore quis a
+              veritatis! Quia voluptatem odit pariatur ab molestias, a, velit eum quo sapiente neque, odio dolorum.
+              Fugit amet id voluptatem vitae?</p>
+          </section>
         </article>
-  
-        <nav class="blog-pagination" aria-label="Pagination">
-          <a class="btn btn-outline-primary" href="#">Older</a>
-          <a class="btn btn-outline-secondary disabled" href="#" tabindex="-1" aria-disabled="true">Newer</a>
-        </nav>
-  
+        <!-- Comments section-->
+        <section class="mb-5">
+          <div class="card bg-light">
+            <div class="card-body">
+              <!-- Comment form-->
+              <form class="mb-4"><textarea class="form-control" rows="3"
+                  placeholder="Join the discussion and leave a comment!"></textarea></form>
+              <!-- Comment with nested comments-->
+              <div class="d-flex mb-4">
+                <!-- Parent comment-->
+                <div class="flex-shrink-0"><img class="rounded-circle"
+                    src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+                <div class="ms-3">
+                  <div class="fw-bold">Commenter Name</div>
+                  If you're going to lead a space frontier, it has to be government; it'll never be private enterprise.
+                  Because the space frontier is dangerous, and it's expensive, and it has unquantified risks.
+                  <!-- Child comment 1-->
+                  <div class="d-flex mt-4">
+                    <div class="flex-shrink-0"><img class="rounded-circle"
+                        src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+                    <div class="ms-3">
+                      <div class="fw-bold">Commenter Name</div>
+                      And under those conditions, you cannot establish a capital-market evaluation of that enterprise.
+                      You can't get investors.
+                    </div>
+                  </div>
+                  <!-- Child comment 2-->
+                  <div class="d-flex mt-4">
+                    <div class="flex-shrink-0"><img class="rounded-circle"
+                        src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+                    <div class="ms-3">
+                      <div class="fw-bold">Commenter Name</div>
+                      When you put money directly to a problem, it makes a good headline.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Single comment-->
+              <div class="d-flex">
+                <div class="flex-shrink-0"><img class="rounded-circle"
+                    src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+                <div class="ms-3">
+                  <div class="fw-bold">Commenter Name</div>
+                  When I look at the universe and all the ways the universe wants to kill us, I find it hard to
+                  reconcile that with statements of beneficence.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
-      {% include 'sidebar.html' %}
-
-  
-      <!-- <div class="col-md-4">
-        <div class="position-sticky" style="top: 2rem;">
-          <div class="p-4">
-            <h4 class="fst-italic">Relacionados</h4>
-            <ol class="list-unstyled mb-0">
-              <li><a href="#">March 2021</a></li>
-              <li><a href="#">February 2021</a></li>
-              <li><a href="#">January 2021</a></li>
-              <li><a href="#">December 2020</a></li>
-              <li><a href="#">November 2020</a></li>
-              <li><a href="#">October 2020</a></li>
-              <li><a href="#">September 2020</a></li>
-              <li><a href="#">August 2020</a></li>
-              <li><a href="#">July 2020</a></li>
-              <li><a href="#">June 2020</a></li>
-              <li><a href="#">May 2020</a></li>
-              <li><a href="#">April 2020</a></li>
-            </ol>
+      <!-- Side widgets-->
+      <div  class="col-lg-4">
+        <!-- Categories widget-->
+        <div class="card mb-4">
+          <div style="background-color: #050419; color: white;" class="card-header">Categorias</div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-6">
+                <ul class="list-unstyled mb-0">
+                  <li><a class="text-decoration-none" href="#!">Web Design</a></li>
+                  <li><a class="text-decoration-none" href="#!">HTML</a></li>
+                  <li><a class="text-decoration-none" href="#!">Freebies</a></li>
+                </ul>
+              </div>
+              <div class="col-sm-6">
+                <ul class="list-unstyled mb-0">
+                  <li><a class="text-decoration-none" href="#!">JavaScript</a></li>
+                  <li><a class="text-decoration-none" href="#!">CSS</a></li>
+                  <li><a class="text-decoration-none" href="#!">Tutorials</a></li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
+        </div>
       </div>
-    </div> -->
-  
-  </main>
+    </div>
+  </div>
+</div>
 
 {% endblock %}

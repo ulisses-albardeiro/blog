@@ -19,7 +19,7 @@
     <div class="container marketing pb-5 ">
         <!-- Sobre mim -->
         <div class="d-flex flex-column justify-content-center align-items-center">
-            <h3 style="color: #050419;" class="fs-1 text-center pt-5">Sobre Mim</h3>
+            <h3 class="fs-1 text-center pt-5">Sobre Mim</h3>
             <div class="mx-auto my-5 bg-primary" style="width: 150px; height: 4px;"></div>
         </div>
         <div class="row featurette pt-5 pb-5">
@@ -35,17 +35,18 @@
             </div>
 
             <div class="col-md-5 order-md-1">
-                <img style="max-width: 420px;" src="{{url('templates/site/assets/img/foto.png')}}" alt="">
+                <img  class="foto-pessoal" src="{{url('templates/site/assets/img/imagem.png')}}" alt="">
 
             </div>
         </div>
     </div><!-- /.container -->
 
     <!-- Cards Blog -->
-    <div class="pt-5 pb-5" style="background-color: #050419;">
+     <section class="posts">
+    <div class="pt-5 pb-5">
         <div class="container my-5">
-            <h2 class="mb-4 text-center text-white">Últimos Posts</h2>
-            <div class="mx-auto my-5 bg-primary" style="width: 150px; height: 4px;"></div>
+            <h2 class="mb-4 text-center fs-1 bg" style="color: #050419;" >Últimos Posts</h2>
+            <div class="mx-auto my-5 bg-primary" style="width: 150px; height: 4px; position: relative; bottom: 35px;"></div>
             <div id="postCarousel" class="carousel slide" data-bs-ride="carousel">
                 <!-- Indicadores -->
                 <div class="carousel-indicators">
@@ -129,6 +130,6 @@
             </div>
         </div>
     </div>
-
+</section>
 
     {% endblock %}

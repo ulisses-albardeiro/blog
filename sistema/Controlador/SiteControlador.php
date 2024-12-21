@@ -42,10 +42,10 @@ class SiteControlador extends Controlador
         }
     }
 
-    public function sobre():void
+    public function blog():void
     {
-        echo $this->template->rendenizar('sobre.html', [
-            'titulo' => 'Sobre',
+        echo $this->template->rendenizar('blog.html', [
+            'titulo' => 'Blog',
         ]);
     }
 
