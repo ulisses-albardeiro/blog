@@ -15,8 +15,8 @@
             <a class="nav-link text-dark fs-5" href="{{url('/blog')}}">Blog</a>
           </li>
         </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search">
+        <form class="d-flex" action="{{url('/pesquisa')}}" method="post">
+          <input name="pesquisa" class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search">
           <button class="btn btn-outline-dark" type="submit">Pesquisar</button>
         </form>
       </div>
