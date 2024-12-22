@@ -7,30 +7,30 @@ use sistema\Modelos\PostModelo;
 use sistema\Nucleo\Controlador;
 use sistema\Nucleo\Helpers;
 
-class SiteControlador extends Controlador 
+class SiteControlador extends Controlador
 {
     public function __construct()
     {
         parent::__construct('templates/site/views');
-    }        
-    
+    }
 
-    public function index():void
+
+    public function index(): void
     {
-        $posts = (new PostModelo())->busca();//Busca o titulo e textos do post
+        $posts = (new PostModelo())->busca()->ordem('id DESC')->limite(6); //Busca o titulo e textos do post
         $categorias = (new CategoriaModelo())->buscaCategoria(); //Busca a categoria e a descrição
         echo $this->template->rendenizar('index.html', [
-            'titulo' => 'Principal',
+            'titulo' => 'Ulisses Alba',
             'posts' => $posts->resultado(true), //retorna os dados da tabela posts para a index
             'categorias' => $categorias //retorna os dados da tabela categoria para a index
         ]);
     }
 
-    public function pesquisa():void 
+    public function pesquisa(): void
     {
         $pesquisa = filter_input(INPUT_POST, 'pesquisa', FILTER_DEFAULT);
 
-        if(isset($pesquisa)){
+        if (isset($pesquisa)) {
             $posts = (new PostModelo())->busca("status = 1 AND titulo LIKE '%{$pesquisa}%'")->resultado(true);
             $categorias = (new CategoriaModelo())->buscaCategoria();
 
@@ -38,30 +38,36 @@ class SiteControlador extends Controlador
                 'posts' => $posts,
                 'categorias' => $categorias
             ]);
-            
         }
     }
 
-    public function blog():void
+    public function blog(): void
     {
         echo $this->template->rendenizar('blog.html', [
             'titulo' => 'Blog',
         ]);
     }
 
-    public function post(int $id):void
+    public function post(int $id): void
     {
-        $post = (new PostModelo())->busca($id);
+        $post = (new PostModelo())->busca('id = :id', 'id=' . $id)->resultado();
         $categorias = (new CategoriaModelo())->buscaCategoria(); //Busca a categoria e a descrição
-        if(!$post){
+        $metade = ceil(count($categorias) / 2);
+
+        // Divide as categorias em duas partes
+        $categoriasEsquerda = array_slice($categorias, 0, $metade);
+        $categoriasDireita = array_slice($categorias, $metade);
+
+        if (!$post) {
             Helpers::redirecionar('404');
         }
+        
         //envia dados para a página post
         echo $this->template->rendenizar('post.html', [
-            'post' => $post, 
-            'categorias' => $categorias 
-
-
+            'post' => $post,
+            'categoriasEsquerda' => $categoriasEsquerda,
+            'categoriasDireita' => $categoriasDireita,
+            'titulo' => $post->titulo
         ]);
     }
 
@@ -73,11 +79,10 @@ class SiteControlador extends Controlador
             'posts' => $post,
             'categorias' => $categorias
         ]);
-
     }
 
 
-    public function erro404():void
+    public function erro404(): void
     {
         echo $this->template->rendenizar('404.html', [
             'titulo' => 'Página não encontrada'

@@ -3,7 +3,7 @@
 {% block conteudo %}
 
 <!-- Page content-->
-<div style="padding-top: 100px;" class="bg-light" >
+<div style="padding-top: 100px;" class="bg-light">
   <div class="container">
     <div class="row">
       <div class="col-lg-8">
@@ -12,7 +12,7 @@
           <!-- Post header-->
           <header class="mb-4">
             <!-- Post title-->
-            <h1 class="fw-bolder mb-1">Exemplir de Título{{post.titulo}}</h1>
+            <h1 class="fw-bolder mb-1">{{ post.titulo }}</h1>
             <!-- Post meta content-->
             <div class="text-muted fst-italic mb-2">Posted on January 1, 2023 by Start Bootstrap</div>
             <!-- Post categories-->
@@ -24,43 +24,7 @@
               alt="..." /></figure>
           <!-- Post content-->
           <section class="mb-5">
-            <p class="fs-5 mb-4">{{post.texto}} Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, aut
-              impedit veniam cupiditate enim tempora unde dolores nulla, delectus libero in illum a neque magni nobis
-              magnam? Sapiente sit, aperiam odit beatae distinctio officia quos fugiat repellat quidem assumenda
-              expedita illum possimus atque vero repellendus, dolore commodi similique perferendis magni fugit obcaecati
-              sed eum. Fuga, quos, laboriosam voluptate error ad nihil perspiciatis provident minus facere debitis
-              nesciunt fugit accusantium consequatur dicta! Consequatur, numquam nam neque minus blanditiis tempore
-              cumque atque voluptatibus debitis, officia mollitia reiciendis, optio adipisci quam. Alias ipsam at fugit
-              rerum, quae, quo vitae perferendis quisquam illo provident doloribus maxime error animi delectus, natus
-              dolores nam qui veniam voluptatem dicta. Dicta, alias. Quia, ad molestias nulla quas possimus facere nihil
-              nesciunt harum doloremque distinctio, mollitia rerum, qui ducimus assumenda laboriosam enim dolorum
-              tenetur delectus tempora ullam aut! A fugiat rem quidem non minus magnam cupiditate placeat quae, officia,
-              accusantium ad. Voluptatem animi delectus eaque odit eligendi, suscipit fuga ratione fugit illum
-              reiciendis consequatur, accusantium minima excepturi voluptates modi dolorum adipisci nulla exercitationem
-              vitae autem quaerat odio quos velit! Maiores architecto cupiditate aliquid fugiat laborum, eum quas
-              aspernatur minus sapiente harum excepturi rerum et necessitatibus natus consequuntur eius accusantium
-              culpa facilis! Laborum labore vel illum quam iure est assumenda aut adipisci porro non et omnis quas nihil
-              atque accusamus doloribus obcaecati aliquam, aspernatur cum esse. Voluptatem fugiat possimus, ab numquam
-              perferendis alias sit, reprehenderit nisi modi illum officiis sapiente esse ut quibusdam voluptates
-              facilis nulla delectus consectetur officia. Iusto architecto consequuntur pariatur nihil, excepturi
-              exercitationem natus eum suscipit laborum velit totam eos voluptates quas quos optio ipsam beatae tempore,
-              quia quaerat. Minima error architecto, necessitatibus a ratione magnam quos, amet impedit officia
-              provident sit harum. Tenetur pariatur iusto, fugiat minima at sint dignissimos molestiae eum unde in,
-              quidem quibusdam assumenda, neque beatae quam. Libero atque repellendus odit maiores consequuntur harum
-              iusto magni neque iste deleniti nemo iure repellat est quam a itaque fugit ex, assumenda ipsa? Similique,
-              dolore cumque! Corporis libero quia molestiae, voluptatum quae nam iure earum maxime obcaecati blanditiis
-              rem aliquam deleniti praesentium saepe dolorem! Quasi, cum maiores quos error mollitia laboriosam nisi.
-              Culpa similique incidunt numquam eius quidem aliquid, nisi distinctio magnam? Nulla consectetur tempora
-              iste saepe natus quo architecto quaerat dolore fuga quisquam! Officiis reprehenderit odio fugiat earum
-              laborum, nesciunt minima ex incidunt, animi consectetur veniam commodi autem asperiores, aut totam tempore
-              ducimus consequatur. Harum dicta suscipit, ratione ullam sit rerum cum expedita laudantium maiores
-              explicabo soluta quo? Iure consectetur perspiciatis, odio eum adipisci neque ipsum. Eos, quidem maiores.
-              Saepe deserunt sunt ipsam necessitatibus ut. Quia error voluptates placeat qui suscipit, cumque sequi
-              facere doloremque ullam, est sint mollitia voluptate neque dignissimos deleniti sed. Aperiam dolorem,
-              adipisci non iure sequi repellendus, ratione, dolorum error maxime beatae soluta saepe esse perspiciatis
-              laboriosam repellat nesciunt vel minus ipsam eos. Nesciunt delectus quaerat pariatur quasi tempore quis a
-              veritatis! Quia voluptatem odit pariatur ab molestias, a, velit eum quo sapiente neque, odio dolorum.
-              Fugit amet id voluptatem vitae?</p>
+            <p class="fs-5 mb-4">{{ post.texto }}</p>
           </section>
         </article>
         <!-- Comments section-->
@@ -115,7 +79,7 @@
         </section>
       </div>
       <!-- Side widgets-->
-      <div  class="col-lg-4">
+      <div class="col-lg-4">
         <!-- Categories widget-->
         <div class="card mb-4">
           <div style="background-color: #050419; color: white;" class="card-header">Categorias</div>
@@ -123,25 +87,25 @@
             <div class="row">
               <div class="col-sm-6">
                 <ul class="list-unstyled mb-0">
-                  <li><a class="text-decoration-none" href="#!">Web Design</a></li>
-                  <li><a class="text-decoration-none" href="#!">HTML</a></li>
-                  <li><a class="text-decoration-none" href="#!">Freebies</a></li>
+                  {% for categoriaE in categoriasEsquerda %}
+                  <li><a class="text-decoration-none" href="#!">{{ categoriaE.titulo }}</a></li>
+                  {% endfor %}
                 </ul>
               </div>
               <div class="col-sm-6">
                 <ul class="list-unstyled mb-0">
-                  <li><a class="text-decoration-none" href="#!">JavaScript</a></li>
-                  <li><a class="text-decoration-none" href="#!">CSS</a></li>
-                  <li><a class="text-decoration-none" href="#!">Tutorials</a></li>
+                  {% for categoriaD in categoriasDireita %}
+                  <li><a class="text-decoration-none" href="#!">{{ categoriaD.titulo }}</a></li>
+                  {% endfor %}
                 </ul>
               </div>
             </div>
           </div>
         </div>
-        </div>
       </div>
     </div>
   </div>
+</div>
 </div>
 
 {% endblock %}

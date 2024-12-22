@@ -35,101 +35,68 @@
             </div>
 
             <div class="col-md-5 order-md-1">
-                <img  class="foto-pessoal" src="{{url('templates/site/assets/img/imagem.png')}}" alt="">
+                <img class="foto-pessoal" src="{{url('templates/site/assets/img/imagem.png')}}" alt="">
 
             </div>
         </div>
     </div><!-- /.container -->
 
     <!-- Cards Blog -->
-     <section class="posts">
-    <div class="pt-5 pb-5">
-        <div class="container my-5">
-            <h2 class="mb-4 text-center fs-1 bg" style="color: #050419;" >Últimos Posts</h2>
-            <div class="mx-auto my-5 bg-primary" style="width: 150px; height: 4px; position: relative; bottom: 35px;"></div>
-            <div id="postCarousel" class="carousel slide" data-bs-ride="carousel">
-                <!-- Indicadores -->
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#postCarousel" data-bs-slide-to="0" class="active"
-                        aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#postCarousel" data-bs-slide-to="1"
-                        aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#postCarousel" data-bs-slide-to="2"
-                        aria-label="Slide 3"></button>
-                </div>
+    <section class="posts">
+        <div class="pt-5 pb-5">
+            <div class="container my-5">
+                <h2 class="mb-4 text-center fs-1 bg" style="color: #050419;">Últimos Posts</h2>
+                <div class="mx-auto my-5 bg-primary"
+                    style="width: 150px; height: 4px; position: relative; bottom: 35px;"></div>
+                <div id="postCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <!-- Indicadores -->
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#postCarousel" data-bs-slide-to="0" class="active"
+                            aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#postCarousel" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#postCarousel" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
+                    </div>
 
-                <!-- Slides -->
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="card">
-                                    <img src="{{url('templates/site/assets/img/card-img.png')}}" class="card-img-top"
-                                        alt="Post 1">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Título do Post 1</h5>
-                                        <p class="card-text">Resumo ou descrição curta do primeiro post. Este é um
-                                            exemplo.</p>
-                                        <a href="#" class="btn btn-primary">Ler Mais</a>
+                    <!-- Slides -->
+                    <div class="carousel-inner">
+                        {% for grupo in posts|batch(3) %}
+                        <div class="carousel-item {% if loop.first %}active{% endif %}">
+                            <div class="row">
+                                {% for post in grupo %}
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <img src="{{ url('templates/site/assets/img/card-img.png') }}"
+                                            class="card-img-top" alt="Post">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ post.titulo }}</h5>
+                                            <p class="card-text">{{ textoResumido(post.texto, 90) }}</p>
+                                            <a href="{{ url('/post/'~post.id) }}" class="btn btn-primary">Ler Mais</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="card">
-                                    <img src="{{url('templates/site/assets/img/card-img.png')}}" class="card-img-top"
-                                        alt="Post 2">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Título do Post 2</h5>
-                                        <p class="card-text">Resumo ou descrição curta do segundo post. Confira agora!
-                                        </p>
-                                        <a href="#" class="btn btn-primary">Ler Mais</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="card">
-                                    <img src="{{url('templates/site/assets/img/card-img.png')}}" class="card-img-top"
-                                        alt="Post 3">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Título do Post 3</h5>
-                                        <p class="card-text">Resumo ou descrição curta do terceiro post. Não perca!</p>
-                                        <a href="#" class="btn btn-primary">Ler Mais</a>
-                                    </div>
-                                </div>
+                                {% endfor %}
                             </div>
                         </div>
+                        {% endfor %}
                     </div>
-                    <!-- Mais slides -->
-                    <div class="carousel-item">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="card">
-                                    <img src="{{url('templates/site/assets/img/card-img.png')}}" class="card-img-top"
-                                        alt="Post 4">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Título do Post 4</h5>
-                                        <p class="card-text">Resumo ou descrição curta do quarto post.</p>
-                                        <a href="#" class="btn btn-primary">Ler Mais</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Adicione mais colunas se necessário -->
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Controles -->
-                <button class="carousel-control-prev" type="button" data-bs-target="#postCarousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Anterior</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#postCarousel" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Próximo</span>
-                </button>
+
+                    <!-- Controles -->
+                    <button class="carousel-control-prev" type="button" data-bs-target="#postCarousel"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Anterior</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#postCarousel"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Próximo</span>
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     {% endblock %}
