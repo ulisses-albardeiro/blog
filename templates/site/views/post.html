@@ -16,8 +16,7 @@
             <!-- Post meta content-->
             <div class="text-muted fst-italic mb-2">Posted on January 1, 2023 by Start Bootstrap</div>
             <!-- Post categories-->
-            <a class="badge bg-primary text-decoration-none link-light" href="#!">PHP</a>
-            <a class="badge bg-primary text-decoration-none link-light" href="#!">HTML5</a>
+            <a class="badge bg-primary text-decoration-none link-light" href="{{ url('/categorias/'~categoria.id) }}">{{ categoria.titulo }}</a>
           </header>
           <!-- Preview image figure-->
           <figure class="mb-4"><img class="img-fluid rounded" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg"
@@ -88,14 +87,14 @@
               <div class="col-sm-6">
                 <ul class="list-unstyled mb-0">
                   {% for categoriaE in categoriasEsquerda %}
-                  <li><a class="text-decoration-none" href="#!">{{ categoriaE.titulo }}</a></li>
+                  <li><a class="text-decoration-none" href="{{ url('/categorias/'~categoriaE.id) }}">{{ categoriaE.titulo }}</a></li>
                   {% endfor %}
                 </ul>
               </div>
               <div class="col-sm-6">
                 <ul class="list-unstyled mb-0">
                   {% for categoriaD in categoriasDireita %}
-                  <li><a class="text-decoration-none" href="#!">{{ categoriaD.titulo }}</a></li>
+                  <li><a class="text-decoration-none" href="{{ url('/categorias/'~categoriaD.id)}}">{{ categoriaD.titulo }}</a></li>
                   {% endfor %}
                 </ul>
               </div>

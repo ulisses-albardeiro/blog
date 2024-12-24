@@ -34,7 +34,7 @@ class AdminPosts extends AdminControlador
         }
 
         //lista no select as categorias
-        $categorias = (new CategoriaModelo())->buscaCategoria();
+        $categorias = (new CategoriaModelo())->busca()->resultado(true);
         echo $this->template->rendenizar('posts/cadastrar.html', [
             'categorias' => $categorias
         ]);
@@ -61,7 +61,7 @@ class AdminPosts extends AdminControlador
         }
 
 
-        $categorias = (new CategoriaModelo())->buscaCategoria(); //Lista os dados das categorias na edição
+        $categorias = (new CategoriaModelo())->busca()->resultado(true); //Lista os dados das categorias na edição
         echo $this->template->rendenizar('posts/cadastrar.html', [
             'post' => $post,
             'categorias' => $categorias
