@@ -3,7 +3,7 @@
 {% block conteudo %}
 
 <!-- Page content-->
-<div style="padding-top: 100px;" class="bg-light">
+<div class="bg-light pt-5">
   <div class="container">
     <div class="row">
       <div class="col-lg-8">
@@ -14,9 +14,10 @@
             <!-- Post title-->
             <h1 class="fw-bolder mb-1">{{ post.titulo }}</h1>
             <!-- Post meta content-->
-            <div class="text-muted fst-italic mb-2">Posted on January 1, 2023 by Start Bootstrap</div>
+            <div class="text-muted fst-italic mb-2">Postado {{ contagemTempo(post.data_post)}}</div>
             <!-- Post categories-->
-            <a class="badge bg-primary text-decoration-none link-light" href="{{ url('/categorias/'~categoria.id) }}">{{ categoria.titulo }}</a>
+            <a class="badge bg-primary text-decoration-none link-light" href="{{ url('/categorias/'~categoria.id) }}">{{
+              categoria.titulo }}</a>
           </header>
           <!-- Preview image figure-->
           <figure class="mb-4"><img class="img-fluid rounded" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg"
@@ -77,34 +78,10 @@
           </div>
         </section>
       </div>
-      <!-- Side widgets-->
-      <div class="col-lg-4">
-        <!-- Categories widget-->
-        <div class="card mb-4">
-          <div style="background-color: #050419; color: white;" class="card-header">Categorias</div>
-          <div class="card-body">
-            <div class="row">
-              <div class="col-sm-6">
-                <ul class="list-unstyled mb-0">
-                  {% for categoriaE in categoriasEsquerda %}
-                  <li><a class="text-decoration-none" href="{{ url('/categorias/'~categoriaE.id) }}">{{ categoriaE.titulo }}</a></li>
-                  {% endfor %}
-                </ul>
-              </div>
-              <div class="col-sm-6">
-                <ul class="list-unstyled mb-0">
-                  {% for categoriaD in categoriasDireita %}
-                  <li><a class="text-decoration-none" href="{{ url('/categorias/'~categoriaD.id)}}">{{ categoriaD.titulo }}</a></li>
-                  {% endfor %}
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+
+      <!-- Sidebar -->
+      {% include 'sidebar.html' %}
+
     </div>
   </div>
-</div>
-</div>
-
-{% endblock %}
+  {% endblock %}

@@ -26,7 +26,6 @@ class AdminPosts extends AdminControlador
             $post->categoria_id = $dados['categoria_id'];
             $post->texto = $dados['texto'];
             $post->status = $dados['status'];
-
             if ($post->salvar()) {
                 $this->mensagem->mensagemSucesso('Post cadastrado com sucesso')->flash();
                 Helpers::redirecionar('admin/posts/listar');

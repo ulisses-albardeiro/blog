@@ -1,25 +1,17 @@
-<header>
-  <nav class="navbar navbar-expand-md navbar-light fixed-top bg-white">
-    <div class="container-fluid">
-      <a href="/blog"><img style="width: 150px;" src="{{ url('templates/site/assets/img/logo-2.png') }}" alt=""></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
-        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav me-auto mb-2 mb-md-0">
-          <li class="nav-item ps-5">
-            <a class="nav-link text-dark fs-5" aria-current="page" href="{{url('/')}}">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-dark fs-5" href="{{url('/blog')}}">Blog</a>
-          </li>
-        </ul>
-        <form class="d-flex" action="{{url('/pesquisa')}}" method="post">
-          <input name="pesquisa" class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search">
-          <button class="btn btn-outline-dark" type="submit">Pesquisar</button>
-        </form>
+<!-- Responsive navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+      <a class="navbar-brand" href="/blog">
+          <h1 class="fs-3">Ulisses Alba</h1>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
+              class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item"><a class="nav-link text-white fs-5" href="{{url('/contato')}}">Contato</a></li>
+              <li class="nav-item"><a class="nav-link text-white fs-5" aria-current="page" href="{{url('/')}}">Blog</a></li>
+          </ul>
       </div>
-    </div>
-  </nav>
-</header>
+  </div>
+</nav>

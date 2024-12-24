@@ -22,17 +22,17 @@ class Template
         $this->twig->setLexer($lexer);
     }
 
-    public function rendenizar(string $view, array $dados):string
+    public function rendenizar(string $view, array $dados): string
     {
         return $this->twig->render($view, $dados);
     }
 
-    private function helpers():void
+    private function helpers(): void
     {
         array(
             //add metodos ao twig para poder usar nas views
             $this->twig->addFunction(
-                new \Twig\TwigFunction('url', function(string $url = null){
+                new \Twig\TwigFunction('url', function (string $url = null) {
                     return Helpers::url($url);
                 })
             ),
@@ -44,17 +44,23 @@ class Template
             ),
 
             $this->twig->addFunction(
-                new \Twig\TwigFunction('flash', function(){
+                new \Twig\TwigFunction('flash', function () {
                     return Helpers::flash();
                 }),
 
+                $this->twig->addFunction(
+                    new \Twig\TwigFunction('usuario', function () {
+                        return UsuarioControlador::usuario();
+                    })
+                )
+                ),
+
             $this->twig->addFunction(
-                new \Twig\TwigFunction('usuario', function(){
-                    return UsuarioControlador::usuario();
+                new \Twig\TwigFunction('contagemTempo', function(string $date){
+                    return Helpers::contagemTempo($date);
                 })
             )
-            )
-            
+
         );
     }
 }
