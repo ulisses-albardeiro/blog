@@ -19,31 +19,44 @@
             <a class="badge bg-primary text-decoration-none link-light" href="{{ url('/categorias/'~categoria.id) }}">{{
               categoria.titulo }}</a>
           </header>
-          <!-- Preview image figure-->
+          <!-- Preview imagem-->
           <figure class="mb-4"><img class="img-fluid rounded" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg"
               alt="..." /></figure>
-          <!-- Post content-->
+          <!-- Post texto-->
           <section class="mb-5">
             <p class="fs-5 mb-4">{{ post.texto }}</p>
           </section>
+          <section class="mb-5">
+            <div class="row align-items-center">
+              <p class="col-auto mb-0 fw-bold">Compartilhe este Post:</p>
+              <div class="col-auto d-flex gap-3">
+                <a class="text-dark " href="https://www.linkedin.com/in/ulisses-alba/"><i
+                    class="bi bi-linkedin fs-2"></i></a>
+                <a class="text-dark" href="https://wa.me/5519971553715"><i class="bi bi-whatsapp fs-2"></i></a>
+                <a class="text-dark" href="https://www.instagram.com/ulisses_alba/"><i
+                    class="bi bi-instagram fs-2"></i></a>
+              </div>
+            </div>
+          </section>
+
         </article>
-        <!-- Comments section-->
+        <!-- Sessão de comentários-->
         <section class="mb-5">
           <div class="card bg-light">
             <div class="card-body">
-              <!-- Comment form-->
+              <!-- Form de comentário-->
               <form class="mb-4"><textarea class="form-control" rows="3"
                   placeholder="Join the discussion and leave a comment!"></textarea></form>
-              <!-- Comment with nested comments-->
+              <!-- Comentários-->
               <div class="d-flex mb-4">
-                <!-- Parent comment-->
+                <!-- Comentário -->
                 <div class="flex-shrink-0"><img class="rounded-circle"
                     src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
                 <div class="ms-3">
                   <div class="fw-bold">Commenter Name</div>
                   If you're going to lead a space frontier, it has to be government; it'll never be private enterprise.
                   Because the space frontier is dangerous, and it's expensive, and it has unquantified risks.
-                  <!-- Child comment 1-->
+                  <!-- Comentário filho 1-->
                   <div class="d-flex mt-4">
                     <div class="flex-shrink-0"><img class="rounded-circle"
                         src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
@@ -53,7 +66,7 @@
                       You can't get investors.
                     </div>
                   </div>
-                  <!-- Child comment 2-->
+                  <!-- Comentário filho 2-->
                   <div class="d-flex mt-4">
                     <div class="flex-shrink-0"><img class="rounded-circle"
                         src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
@@ -64,7 +77,7 @@
                   </div>
                 </div>
               </div>
-              <!-- Single comment-->
+              <!-- Comentário único -->
               <div class="d-flex">
                 <div class="flex-shrink-0"><img class="rounded-circle"
                     src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
