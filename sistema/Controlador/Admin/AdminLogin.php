@@ -27,7 +27,7 @@ class AdminLogin extends Controlador
             if (in_array("", $dados)) {
                 $this->mensagem->mensagemAtencao("Preencha todos os campos!")->flash();
             } else {
-                $usuario = (new UsuarioModelo())->login($dados, 1);
+                $usuario = (new UsuarioModelo())->login($dados);
 
                 if ($usuario) {
                     Helpers::redirecionar('admin/dashboard');
@@ -38,7 +38,7 @@ class AdminLogin extends Controlador
 
     public function checarDados(array $dados): bool
     {
-        if (empty($dados['email'])) {
+        if (empty($dados['usuario'])) {
             return false;
         }
 

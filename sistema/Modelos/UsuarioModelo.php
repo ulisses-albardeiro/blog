@@ -12,15 +12,15 @@ class UsuarioModelo extends Modelo
         parent::__construct("usuarios");
     }
 
-    public function buscaPorUsuario(string $email): ?UsuarioModelo
+    public function buscaPorUsuario(string $usuario): ?UsuarioModelo
     {
-        $busca = $this->busca("email = :e", ":e={$email}"); //IMPORTANTE manter os espaços nessa ordem
+        $busca = $this->busca("email = :e", ":e={$usuario}");
         return $busca->resultado();
     }
 
-    public function login(array $dados, int $nivel = 1)
+    public function login(array $dados)
     {
-        $usuario = (new UsuarioModelo())->buscaPorUsuario($dados['usuario']);
+        $usuario = $this->buscaPorUsuario($dados['usuario']);
 
 
         if (!$usuario) {

@@ -37,6 +37,13 @@ try {
         SimpleRouter::get(URL_ADMIN. 'posts/excluir/{id}', 'AdminPosts@excluirPost');
         SimpleRouter::get(URL_ADMIN. 'categorias/excluir/{id}', 'AdminCategorias@excluirCategoria');
 
+        //Rotas Usuários
+        SimpleRouter::get(URL_ADMIN. 'usuarios/listar', 'AdminUsuarios@usuarios');
+        SimpleRouter::match(['get', 'post'], URL_ADMIN. 'usuario/cadastrar', 'AdminUsuarios@cadastrarUsuario'); 
+        SimpleRouter::match(['get', 'post'], URL_ADMIN. 'usuario/editar/{id}', 'AdminUsuarios@editarUsuario');
+        SimpleRouter::get(URL_ADMIN. 'usuario/excluir/{id}', 'AdminUsuarios@excluirUsuario');
+
+
     });
 
     SimpleRouter::start();
