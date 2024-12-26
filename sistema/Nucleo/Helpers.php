@@ -138,7 +138,7 @@ class Helpers
         } elseif ($hours <= 24) {
             return $hours == 1 ? 'há 1 hora' : 'há ' . $hours . ' horas';
         } elseif ($days <= 30) {
-            return $days == 1 ? 'há 1 dia' : 'há ' . $days . 'dias ';
+            return $days == 1 ? 'há 1 dia' : 'há ' . $days . ' dias ';
         } elseif ($weeks <= 4) {
             return $weeks == 1 ? 'há 1 semana' : 'há ' . $weeks . ' semanas';
         } elseif ($months <= 12) {

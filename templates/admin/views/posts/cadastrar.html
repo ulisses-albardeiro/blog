@@ -9,9 +9,10 @@
         <div class="pl-3 pr-3">
             <form
                 action="{% if post.id%}{{url('admin/posts/editar/'~post.id)}}{% else %}{{url('admin/posts/cadastrar')}}{% endif %}"
-                method="post">
+                method="post" enctype="multipart/form-data">
                 <div class="mb-3">
                     <div class="row">
+
                         <div class="col-md-8">
                             <label class="form-label">Título</label>
                             <input type="text" class="form-control" id="titulo" name="titulo" value="{{post.titulo}}">
