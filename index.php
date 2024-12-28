@@ -7,7 +7,7 @@ use sistema\Biblioteca\Upload;
 
 $up = new Upload('dirUpload');
 
-$arquivo = $_FILES['arquivo'];
+$arquivo = ($_FILES['arquivo']);
 
 
 $up->arquivo($arquivo, null, 'img');

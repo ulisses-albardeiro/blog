@@ -9,6 +9,7 @@ class Upload
     public $arquivo;
     public $nome;
     public $diretorioFilho;
+    public $tamanho;
     public $resultado;
     public $erro;
 
@@ -32,14 +33,30 @@ class Upload
     }
 
 
-    public function arquivo(array $arquivo, string $nome = null,  string $diretorioFilho = null): void
+    public function arquivo(array $arquivo, string $nome = null,  string $diretorioFilho = null, int $tamanho = null): void
     {
         $this->arquivo = $arquivo;
         $this->nome = $nome ?? pathinfo($this->arquivo['name'], PATHINFO_FILENAME);
         $this->diretorioFilho = $diretorioFilho ?? 'arquivos';
-        $this->criarDiretorioFilho();
-        $this->renomearArquivo();
-        $this->moverArquivo();
+        $this->tamanho = $tamanho ?? 1;
+
+        $extencaoArquivo = pathinfo($this->arquivo['name'], PATHINFO_EXTENSION);
+        $extencoesPermitidas = ['pdf', 'png', 'jpeg', 'jpg'];
+        $mimetypeArquivo = $this->arquivo['type'];
+        $mimetypesPermitidas = ['application/pdf', 'image/png', 'image/jpeg', 'image/jpg'];
+
+        if (!in_array($extencaoArquivo, $extencoesPermitidas)) {
+            $this->erro = 'exteção de arquivo não permitida, somente ' . implode(" .", $extencoesPermitidas);
+        } elseif (!in_array($mimetypeArquivo, $mimetypesPermitidas)) {
+            $this->erro = 'Tipo de arquivo não permitido';
+        }elseif($this->arquivo['size'] > $this->tamanho * (1024 * 1024)){
+            $this->erro = 'Arquivo maior que o permitido, tamanho máximo de '. $this->tamanho * (1024 * 1024).'MB e o seu arquivo tem '.$this->arquivo['size'].'MB';
+        }
+         else {
+            $this->criarDiretorioFilho();
+            $this->renomearArquivo();
+            $this->moverArquivo();
+        }
     }
 
     public function renomearArquivo(): void
@@ -67,7 +84,7 @@ class Upload
             $this->resultado = $this->nome;
         } else {
             $this->resultado = null;
-            $this->erro = 'erro ao mveer arquivo';
+            $this->erro = 'erro ao mover arquivo';
         }
     }
 }
