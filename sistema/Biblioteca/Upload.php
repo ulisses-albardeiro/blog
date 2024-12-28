@@ -26,7 +26,7 @@ class Upload
     private ?string $nome;
     private ?string $diretorioFilho;
     private ?int $tamanho;
-    private ?string $resultado;
+    private ?string $resultado = null;
     private ?string $erro;
 
     /**
@@ -50,9 +50,9 @@ class Upload
 
 
     /**
-     * Retorna o resultado da operação em caso de sucesso.
+     * Retorna o resultado com o nome salvo do arquivo da operação em caso de sucesso.
      *
-     * @return string|null Mensagem do resultado da operação ou null em caso de falha.
+     * @return string|null Nome do arquivo ou null em caso de falha.
      */
 
     public function getResultado(): ?string

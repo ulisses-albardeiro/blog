@@ -6,6 +6,7 @@ use sistema\Modelos\CategoriaModelo;
 use sistema\Modelos\PostModelo;
 use sistema\Nucleo\Controlador;
 use sistema\Nucleo\Helpers;
+use sistema\Biblioteca\Upload;
 
 class SiteControlador extends Controlador
 {
@@ -13,7 +14,6 @@ class SiteControlador extends Controlador
     {
         parent::__construct('templates/site/views');
     }
-
 
     public function index(): void
     {

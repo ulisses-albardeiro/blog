@@ -50,25 +50,40 @@ class Helpers
     }
 
     /**
-     * Limpa a slug trocando caracteres para outros mais limpos tornando-o mais amigavel
-     * @param string titulo do post
-     * @return string $slug sem simbolos e acentos, com apenas letras e traços
+     * Limpa a string, gerando um slug amigável para URLs.
+     *
+     * @param string $title Título do post.
+     * @return string Slug sem símbolos, acentos, com letras minúsculas e traços.
      */
-
     public static function slug(string $title): string
     {
-        $map['a'] =
-            'ÁÀÂÃÇÈÉÊẼÌÍÎĨÒÓÔÕÑÙÚÛŨàáâãèéêẽìíîĩòóôõùúûũ@#$%&*<>?^{}][~+=§£¢!()!@#$%¨*%$';
+        // Mapeamento de caracteres acentuados para seus equivalentes
+        $map = [
+            'Á' => 'A', 'À' => 'A', 'Â' => 'A', 'Ã' => 'A', 'Ç' => 'C',
+            'È' => 'E', 'É' => 'E', 'Ê' => 'E', 'Ẽ' => 'E', 'Ì' => 'I',
+            'Í' => 'I', 'Î' => 'I', 'Ĩ' => 'I', 'Ò' => 'O', 'Ó' => 'O',
+            'Ô' => 'O', 'Õ' => 'O', 'Ñ' => 'N', 'Ù' => 'U', 'Ú' => 'U',
+            'Û' => 'U', 'Ũ' => 'U', 'á' => 'a', 'à' => 'a', 'â' => 'a',
+            'ã' => 'a', 'ç' => 'c', 'è' => 'e', 'é' => 'e', 'ê' => 'e',
+            'ẽ' => 'e', 'ì' => 'i', 'í' => 'i', 'î' => 'i', 'ĩ' => 'i',
+            'ò' => 'o', 'ó' => 'o', 'ô' => 'o', 'õ' => 'o', 'ñ' => 'n',
+            'ù' => 'u', 'ú' => 'u', 'û' => 'u', 'ũ' => 'u'
+        ];
 
-        $map['b'] =
-            'aaaaceeeeiiiioooonuuuuaaaaeeeeiiiioooouuuu---------------------------------';
+        // Substitui caracteres mapeados
+        $slug = strtr($title, $map);
 
-        $slug = strtr(mb_convert_encoding($title, 'UTF-8'), mb_convert_encoding($map['a'], 'UTF-8'), ($map['b']));
+        // Remove tags HTML e espaços extras
         $slug = strip_tags(trim($slug));
-        $slug = str_replace(' ', '-', $slug);
-        $slug = str_replace(['------', '----', '---', '--'], '-', $slug);
 
-        return strtolower(mb_convert_encoding($slug, 'UTF-8'));
+        // Substitui caracteres não permitidos por traços
+        $slug = preg_replace('/[^a-zA-Z0-9]+/', '-', $slug);
+
+        // Remove traços duplicados
+        $slug = preg_replace('/-+/', '-', $slug);
+
+        // Converte para minúsculas
+        return strtolower($slug);
     }
 
 

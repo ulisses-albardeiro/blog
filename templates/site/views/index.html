@@ -21,7 +21,7 @@
             {% set primeiro_post = posts|first %}
             <div class="card mb-4">
                 <a href="{{ url('/post/'~primeiro_post.id) }}">
-                    <img class="card-img-top" src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg" alt="...">
+                    <img style="max-height: 500px;" class="card-img-top" src="{{ url('templates/admin/assets/img/tumbs/'~primeiro_post.tumb) }}" alt="...">
                 </a>
                 <div class="card-body">
                     <div class="small text-muted">Postado {{contagemTempo(primeiro_post.data_post)}}</div>
@@ -38,7 +38,7 @@
                     <!-- Blog post-->
                     <div class="card mb-4">
                         <a href="{{ url('/post/'~post.id) }}">
-                            <img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="...">
+                            <img class="card-img-top" src="{{ url('templates/admin/assets/img/tumbs/'~post.tumb) }}">
                         </a>
                         <div class="card-body">
                             <div class="small text-muted">Postado {{contagemTempo(post.data_post)}}</div>

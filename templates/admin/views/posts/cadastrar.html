@@ -30,10 +30,10 @@
                     </div>
                 </div>
 
-                <div class="mb-3">
+                <div class="mb-3 ">
                     <div class="row">
 
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <label for="categoria_id" class="form-label">Categoria</label>
                             <select name="categoria_id" id="categoria_id" class="form-select">
                                 <option disabled {% if not post.categoria_id %}selected{% endif %}>Selecione
@@ -47,9 +47,14 @@
 
                         <div class="col-md-6">
                             <label class="form-label">Tumb</label>
-                            <input type="file" class="form-control" id="tumb" name="tumb" value="{{post.tumb}}">
+                            <input type="file" class="form-control" id="tumb" name="tumb" accept="image/*">
                         </div>
 
+                        
+                        <div class="col-md-2">
+                            <img id="preview" style="max-width: 150px;" src="{% if post.tumb %} {{ url('templates/admin/assets/img/tumbs/'~post.tumb) }} {% endif %}">
+                        </div>
+                        
                     </div>
                 </div>
                 <div class="mb-3">
