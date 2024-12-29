@@ -111,11 +111,11 @@ class Upload
 
     private function renomearArquivo(): void
     {
-        $arquivo = strrchr($this->arquivo['name'], '.');
+        $arquivo = $this->nome . strrchr($this->arquivo['name'], '.');
 
         if (file_exists($this->diretorio . DIRECTORY_SEPARATOR . $this->diretorioFilho . DIRECTORY_SEPARATOR . $arquivo)) {
 
-            $arquivo = $this->nome . '-' . uniqid() . strchr($this->arquivo['name'], '.');
+            $arquivo = $this->nome . '-' . substr(uniqid(), 0, 4) . strrchr($this->arquivo['name'], '.');
         }
         $this->nome = $arquivo;
     }

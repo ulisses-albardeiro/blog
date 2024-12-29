@@ -22,7 +22,7 @@ class AdminPosts extends AdminControlador
         $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
         if (isset($_FILES['tumb'])) {
-            $upload = new Upload('templates/admin/assets/img');
+            $upload = new Upload('templates/site/assets/img');
             $upload->arquivo($_FILES['tumb'], Helpers::slug($dados['titulo']), 'tumbs');
             if ($upload->getResultado()) {
                 $nomeArquivo = $upload->getResultado();
@@ -99,7 +99,11 @@ class AdminPosts extends AdminControlador
                 $this->mensagem->mensagemErro("Não foi possivel Realizar essa operação")->flash();
                 Helpers::redirecionar("admin/posts/listar");
             } else {
+                $arquivo = $post->tumb;
                 if ($post->apagar("id = {$id}")) {
+
+                    unlink("templates/site/assets/img/tumbs/$arquivo");
+
                     $this->mensagem->mensagemSucesso("Post deletado com sucesso!")->flash();
                     Helpers::redirecionar("admin/posts/listar");
                 } else {

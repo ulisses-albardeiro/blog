@@ -29,6 +29,5 @@ function readImage() {
       file.readAsDataURL(this.files[0]);
   }
 }
-
 document.getElementById("tumb").addEventListener("change", readImage, false);
 
