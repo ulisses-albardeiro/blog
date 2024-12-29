@@ -20,15 +20,17 @@
             {% if posts is not empty %}
             {% set primeiro_post = posts|first %}
             <div class="card mb-4">
-                <a href="{{ url('/post/'~primeiro_post.id) }}">
-                    <img style="max-height: 500px;" class="card-img-top" src="{{ url('templates/site/assets/img/tumbs/'~primeiro_post.tumb) }}" alt="...">
+                <a class="text-decoration-none text-dark" href="{{ url('/post/'~primeiro_post.id) }}">
+                    <img style="max-height: 500px;" class="card-img-top"
+                        src="{{ url('templates/site/assets/img/tumbs/'~primeiro_post.tumb) }}" alt="...">
+
+                    <div class="card-body">
+                        <div class="small text-muted">Postado {{contagemTempo(primeiro_post.data_post)}}</div>
+                        <h2 class="card-title">{{ primeiro_post.titulo }}</h2>
+                        <p class="card-text">{{ textoResumido(primeiro_post.texto, 200) }}</p>
+
+                    </div>
                 </a>
-                <div class="card-body">
-                    <div class="small text-muted">Postado {{contagemTempo(primeiro_post.data_post)}}</div>
-                    <h2 class="card-title">{{ primeiro_post.titulo }}</h2>
-                    <p class="card-text">{{ textoResumido(primeiro_post.texto, 200) }}</p>
-                    <a class="btn btn-primary" href="{{ url('/post/'~primeiro_post.id) }}">Leia Mais</a>
-                </div>
             </div>
 
             <!-- Linha aninhada para postagens de blog não destacadas-->
@@ -36,16 +38,18 @@
                 {% for post in posts|slice(1) %}
                 <div class="col-lg-6">
                     <!-- Blog post-->
+
                     <div class="card mb-4">
-                        <a href="{{ url('/post/'~post.id) }}">
+                        <a class="text-decoration-none text-dark" href="{{ url('/post/'~post.id) }}">
                             <img class="card-img-top" src="{{ url('templates/site/assets/img/tumbs/'~post.tumb) }}">
+
+                            <div class="card-body">
+                                <div class="small text-muted">Postado {{contagemTempo(post.data_post)}}</div>
+                                <h2 class="card-title h4">{{ post.titulo }}</h2>
+                                <p class="card-text">{{ textoResumido(post.texto, 100) }}</p>
+
+                            </div>
                         </a>
-                        <div class="card-body">
-                            <div class="small text-muted">Postado {{contagemTempo(post.data_post)}}</div>
-                            <h2 class="card-title h4">{{ post.titulo }}</h2>
-                            <p class="card-text">{{ textoResumido(post.texto, 100) }}</p>
-                            <a class="btn btn-primary" href="{{ url('/post/'~post.id) }}">Leia mais</a>
-                        </div>
                     </div>
                 </div>
                 {% endfor %}

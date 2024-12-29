@@ -2,6 +2,7 @@
 
 namespace sistema\Biblioteca;
 
+use GdImage;
 
 /**
  * Classe independente do sistema.
@@ -26,6 +27,7 @@ class Upload
     private ?string $nome;
     private ?string $diretorioFilho;
     private ?int $tamanho;
+    public $larguraImagem;
     private ?string $resultado = null;
     private ?string $erro;
 
@@ -111,12 +113,19 @@ class Upload
 
     private function renomearArquivo(): void
     {
-        $arquivo = $this->nome . strrchr($this->arquivo['name'], '.');
+        $extensao = strrchr($this->arquivo['name'], '.');
+        $arquivo = $this->nome . $extensao;
 
-        if (file_exists($this->diretorio . DIRECTORY_SEPARATOR . $this->diretorioFilho . DIRECTORY_SEPARATOR . $arquivo)) {
+        $verificacaoNome = $this->diretorio . DIRECTORY_SEPARATOR . $this->diretorioFilho . DIRECTORY_SEPARATOR . $arquivo;
 
-            $arquivo = $this->nome . '-' . substr(uniqid(), 0, 4) . strrchr($this->arquivo['name'], '.');
+        $i = 1;
+
+        while (file_exists($verificacaoNome)) {
+            $arquivo = $this->nome . "($i)" . $extensao;
+            $verificacaoNome = $this->diretorio . DIRECTORY_SEPARATOR . $this->diretorioFilho . DIRECTORY_SEPARATOR . $arquivo;
+            $i++;
         }
+
         $this->nome = $arquivo;
     }
 
@@ -137,4 +146,5 @@ class Upload
             $this->erro = 'erro ao mover arquivo';
         }
     }
+
 }

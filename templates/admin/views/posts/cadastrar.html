@@ -15,12 +15,12 @@
 
                         <div class="col-md-8">
                             <label class="form-label">Título</label>
-                            <input type="text" class="form-control" id="titulo" name="titulo" value="{{post.titulo}}">
+                            <input required type="text" class="form-control" id="titulo" name="titulo" value="{{post.titulo}}">
                         </div>
 
                         <div class="col-md-4">
                             <label for="status" class="form-label">Status</label>
-                            <select name="status" id="status" class="form-select">
+                            <select required name="status" id="status" class="form-select">
                                 <option disabled {% if post.status=='' %}selected{%endif%}>Selecione</option>
                                 <option value="1" {% if post.status=='1' %}selected{%endif%}>Publicado</option>
                                 <option value="0" {% if post.status=='0' %}selected{%endif%}>Rascunho</option>
@@ -35,7 +35,7 @@
 
                         <div class="col-md-4">
                             <label for="categoria_id" class="form-label">Categoria</label>
-                            <select name="categoria_id" id="categoria_id" class="form-select">
+                            <select required name="categoria_id" id="categoria_id" class="form-select">
                                 <option disabled {% if not post.categoria_id %}selected{% endif %}>Selecione
                                 </option>
                                 {% for categoria in categorias %}
@@ -47,7 +47,7 @@
 
                         <div class="col-md-6">
                             <label class="form-label">Tumb</label>
-                            <input type="file" class="form-control" id="tumb" name="tumb" accept="image/*">
+                            <input required type="file" class="form-control" id="tumb" name="tumb" accept="image/*">
                         </div>
 
                         
