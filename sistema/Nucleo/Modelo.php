@@ -79,7 +79,7 @@ abstract class Modelo
     function busca(?string $termos = null, ?string $parametros = null, string $colunas = '*')
     {
         if ($termos) {
-            $this->query = "SELECT {$colunas} FROM ".$this->tabela." WHERE {$termos}";
+            $this->query = "SELECT {$colunas} FROM " . $this->tabela . " WHERE {$termos}";
             parse_str($parametros, $this->parametros);
 
             return $this;
@@ -116,7 +116,7 @@ abstract class Modelo
             $colunas = implode(",",  array_keys($dados));
             $valores = ":" . implode(", :", array_keys($dados));
 
-            $query = "INSERT INTO ".$this->tabela." ({$colunas}) VALUES ({$valores})";
+            $query = "INSERT INTO " . $this->tabela . " ({$colunas}) VALUES ({$valores})";
             $stmt = Conexao::getInstancia()->prepare($query);
             $stmt->execute($this->filtro($dados));
 
@@ -193,7 +193,6 @@ abstract class Modelo
         if (empty($this->id)) {
             $this->cadastrar($this->armazenar());
             if ($this->erro) {
-                $this->mensagem->mensagemErro("Houve um erro ao cadastrar os dados");
                 return false;
             }
         }
@@ -203,7 +202,6 @@ abstract class Modelo
             $id = $this->id;
             $this->atualizar($this->armazenar(), "id = {$id}");
             if ($this->erro) {
-                $this->mensagem->mensagemErro("Houve um erro ao atualizar os dados");
                 return false;
             }
 

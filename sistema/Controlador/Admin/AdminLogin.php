@@ -4,8 +4,8 @@ namespace sistema\Controlador\Admin;
 
 use sistema\Nucleo\Controlador;
 use sistema\Nucleo\Helpers;
-use sistema\Nucleo\Sessao;
 use sistema\Modelos\UsuarioModelo;
+use sistema\Controlador\UsuarioControlador;
 
 class AdminLogin extends Controlador
 {
@@ -26,11 +26,19 @@ class AdminLogin extends Controlador
         if (isset($dados)) {
             if (in_array("", $dados)) {
                 $this->mensagem->mensagemAtencao("Preencha todos os campos!")->flash();
+                Helpers::redirecionar('admin/login');
             } else {
-                $usuario = (new UsuarioModelo())->login($dados);
+                $login = (new UsuarioModelo())->login($dados);
 
-                if ($usuario) {
+                if ($login) {
+                    $usuario = new UsuarioControlador;
+                    $nome = $usuario->usuario();
+
+                    $this->mensagem->mensagemSucesso("Bem vindo, {$nome->nome}")->flash();
                     Helpers::redirecionar('admin/dashboard');
+                } else {
+                    $this->mensagem->mensagemErro("Dados incorretos")->flash();
+                    Helpers::redirecionar('admin/login');
                 }
             }
         }
@@ -38,7 +46,7 @@ class AdminLogin extends Controlador
 
     public function checarDados(array $dados): bool
     {
-        if (empty($dados['usuario'])) {
+        if (empty($dados['usuario']) or empty($dados['usuario'])) {
             return false;
         }
 

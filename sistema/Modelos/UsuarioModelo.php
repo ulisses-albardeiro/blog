@@ -12,20 +12,11 @@ class UsuarioModelo extends Modelo
         parent::__construct("usuarios");
     }
 
-    public function buscaPorUsuario(string $usuario): ?UsuarioModelo
-    {
-        $busca = $this->busca("email = :e", ":e={$usuario}");
-        return $busca->resultado();
-    }
-
     public function login(array $dados)
     {
-        $usuario = $this->buscaPorUsuario($dados['usuario']);
-
+        $usuario = $this->validacao($dados['usuario'], $dados['senha']);
 
         if (!$usuario) {
-            $this->mensagem->mensagemErro("Dados incorretos")->flash();
-
             return false;
         }
 
@@ -33,6 +24,20 @@ class UsuarioModelo extends Modelo
 
         $this->mensagem->mensagemSucesso("Bem vindo, {$usuario->nome}")->flash();
 
+
         return true;
     }
+
+    public function validacao(string $usuario, string $senha): ?UsuarioModelo
+    {
+    
+        $busca_usuario = $this->busca("email = :email", ":email={$usuario}")->resultado();
+        
+        if ($busca_usuario && password_verify($senha, $busca_usuario->senha)) {
+            
+            return $busca_usuario;
+        }
+        return null;
+    }
+
 }

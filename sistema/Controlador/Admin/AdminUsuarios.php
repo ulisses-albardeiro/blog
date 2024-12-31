@@ -25,7 +25,7 @@ class AdminUsuarios extends AdminControlador
             $usuario->nome = $dados['nome'];
             $usuario->email = $dados['email'];
             $usuario->cpf = $dados['cpf'];
-            $usuario->senha = $dados['senha'];
+            $usuario->senha = password_hash($dados['senha'], PASSWORD_DEFAULT);
             if ($usuario->salvar()) {
                 $this->mensagem->mensagemSucesso('Post cadastrado com sucesso')->flash();
                 Helpers::redirecionar('admin/usuarios/listar');
@@ -45,16 +45,17 @@ class AdminUsuarios extends AdminControlador
 
         $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         if (isset($dados)) {
-            //(new PostModelo())->atualizarPost($id, $dados);
-            $usuario = new UsuarioModelo;
+            $usuario->id = $id;
             $usuario->nome = $dados['nome'];
             $usuario->email = $dados['email'];
             $usuario->cpf = $dados['cpf'];
-            $usuario->senha = $dados['senha'];
+            $usuario->senha = password_hash($dados['senha'], PASSWORD_DEFAULT);
 
             if ($usuario->salvar()) {
-                $this->mensagem->mensagemSucesso('Post editado com sucesso')->flash();
+                $this->mensagem->mensagemSucesso('Usuário editado com sucesso')->flash();
                 Helpers::redirecionar("admin/usuarios/listar");
+            }else{
+                $this->mensagem->mensagemErro($usuario->erro())->flash();
             }
         }
 

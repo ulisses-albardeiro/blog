@@ -87,6 +87,11 @@ class SiteControlador extends Controlador
             'categoriasDireita' => $categoriasDireita,
             'titulo' => $post->titulo
         ]);
+
+        //Contagem de Visualizações
+        $post->visitas += 1;
+        $post->ultima_visita = date('Y-m-d H:m:s');
+        $post->salvar();
     }
 
     public function categorias(int $id): void

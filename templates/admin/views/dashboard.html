@@ -2,8 +2,128 @@
 
 {% block content %}
 
-<h1>teste</h1>
 {{ flash() }}
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, a nisi? Dolor saepe placeat aperiam distinctio veniam provident. Odit dignissimos obcaecati molestias reiciendis dolores beatae ea, maxime laudantium laborum, iure temporibus hic, aliquid perspiciatis doloribus sequi. Quod amet, maxime ipsum aliquid numquam veritatis officiis ducimus voluptate sapiente velit dolorem ea commodi eum hic nesciunt odit! Error minus cupiditate consequatur distinctio, qui quam nesciunt suscipit! Repudiandae velit reiciendis consectetur nam a recusandae quasi fuga nisi? Minus perferendis beatae ullam porro, iste sint quidem alias velit, quam molestias quasi quis, aliquam tempora aspernatur est ab fugiat deserunt doloremque voluptatibus explicabo dignissimos laudantium.</p>
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- Main content -->
+        <main class="col-md-12 ms-sm-auto col-lg-12 px-md-4">
+            <!-- Cards Row -->
+            <div class="row mb-4">
+                <div class="col-md-3">
+                    <div class="card text-white bg-primary">
+                        <div class="card-body">
+                            <h5 class="card-title">Visualizações</h5>
+                            <p class="card-text fs-3">12,345</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-white bg-success">
+                        <div class="card-body">
+                            <h5 class="card-title">Posts Ativos</h5>
+                            <p class="card-text fs-3">42</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-white bg-danger">
+                        <div class="card-body">
+                            <h5 class="card-title">Posts Inativos</h5>
+                            <p class="card-text fs-3">8</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-white bg-info">
+                        <div class="card-body">
+                            <h5 class="card-title">Categorias</h5>
+                            <p class="card-text fs-3">5</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Posts Mais Vistos -->
+            <div class="mb-4">
+                <h2 class="h4">Posts Mais Vistos</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Título</th>
+                            <th>Visualizações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Como aprender PHP</td>
+                            <td>5,678</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Melhores práticas em CSS</td>
+                            <td>4,321</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Otimizando seu código</td>
+                            <td>3,210</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Gráficos -->
+            <div class="row">
+                <div class="col-md-6">
+                    <h2 class="h4">Tempo Médio no Site</h2>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">3 min 24 s</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h2 class="h4">Comentários</h2>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">120</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Outros Dados -->
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <div class="card text-white bg-warning">
+                        <div class="card-body">
+                            <h5 class="card-title">Tempo Médio no Site</h5>
+                            <p class="card-text fs-3">1,234</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-white bg-secondary">
+                        <div class="card-body">
+                            <h5 class="card-title">Compartilhamentos</h5>
+                            <p class="card-text fs-3">98</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-white bg-dark">
+                        <div class="card-body">
+                            <h5 class="card-title">Posts por Categoria</h5>
+                            <p class="card-text fs-3">8 / Categoria</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
 
 {% endblock %}
