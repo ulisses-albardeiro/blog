@@ -27,7 +27,7 @@
                     <div class="card-body">
                         <div class="small text-muted">Postado {{contagemTempo(primeiro_post.data_post)}}</div>
                         <h2 class="card-title">{{ primeiro_post.titulo }}</h2>
-                        <p class="card-text">{{ textoResumido(primeiro_post.texto, 200) }}</p>
+                        <p class="card-text">{{ decodeHtml(textoResumido(primeiro_post.texto, 200)) | raw }}</p>
 
                     </div>
                 </a>
@@ -46,7 +46,7 @@
                             <div class="card-body">
                                 <div class="small text-muted">Postado {{contagemTempo(post.data_post)}}</div>
                                 <h2 class="card-title h4">{{ post.titulo }}</h2>
-                                <p class="card-text">{{ textoResumido(post.texto, 100) }}</p>
+                                <p class="card-text">{{ decodeHtml(textoResumido(post.texto, 100)) }}</p>
 
                             </div>
                         </a>

@@ -9,6 +9,7 @@ use sistema\Nucleo\Helpers;
 
 class AdminPosts extends AdminControlador
 {
+
     public function listar(): void
     {
         $posts = (new PostModelo())->busca()->ordem('id DESC')->resultado(true); //Busca o titulo e textos do post
@@ -17,8 +18,22 @@ class AdminPosts extends AdminControlador
         ]);
     }
 
+
     public function cadastrarPost(): void
     {
+        if (isset($_FILES['Imagem-editor'])) {
+            $upload_img = new Upload('templates/admin/assets/img');
+            $upload_img->arquivo($_FILES['Imagem-editor'], $_FILES['Imagem-editor']['name'], 'posts');
+            if ($upload_img->getResultado()) {
+                $nome_img = $upload_img->getResultado();
+                echo json_encode([
+                    'success' => true,
+                    'file' => 'templates/admin/assets/img/posts/' . $nome_img
+                ]);
+                exit;
+            }
+        }
+
         $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
         if (isset($_FILES['tumb'])) {
@@ -33,7 +48,7 @@ class AdminPosts extends AdminControlador
             $post = new PostModelo;
             $post->titulo = $dados['titulo'];
             $post->categoria_id = $dados['categoria_id'];
-            $post->texto = $dados['texto'];
+            $post->texto = htmlentities($dados['texto']);
             $post->status = $dados['status'];
             $post->tumb = $nomeArquivo;
             if ($post->salvar()) {

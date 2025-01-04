@@ -53,12 +53,18 @@ class Template
                         return UsuarioControlador::usuario();
                     })
                 )
-                ),
+            ),
 
             $this->twig->addFunction(
-                new \Twig\TwigFunction('contagemTempo', function(string $date){
+                new \Twig\TwigFunction('contagemTempo', function (string $date) {
                     return Helpers::contagemTempo($date);
-                })
+                }),
+            ),
+
+            $this->twig->addFunction(
+                new \Twig\TwigFunction('decodeHtml', function (string $texto) {
+                    return Helpers::decodeHtml($texto);
+                }),
             )
 
         );

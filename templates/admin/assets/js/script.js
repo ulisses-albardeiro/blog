@@ -10,11 +10,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const dropdownToggles = document.querySelectorAll('.nav-item.dropdown .nav-link');
 
   dropdownToggles.forEach(toggle => {
-      toggle.addEventListener('click', function () {
-          const icon = this.querySelector('i');
-          icon.classList.toggle('bi-chevron-down');
-          icon.classList.toggle('bi-chevron-up');
-      });
+    toggle.addEventListener('click', function () {
+      const icon = this.querySelector('i');
+      icon.classList.toggle('bi-chevron-down');
+      icon.classList.toggle('bi-chevron-up');
+    });
   });
 });
 
@@ -22,12 +22,13 @@ document.addEventListener("DOMContentLoaded", function () {
 //Preview de imagem no input file
 function readImage() {
   if (this.files && this.files[0]) {
-      var file = new FileReader();
-      file.onload = function(e) {
-          document.getElementById("preview").src = e.target.result;
-      };       
-      file.readAsDataURL(this.files[0]);
+    var file = new FileReader();
+    file.onload = function (e) {
+      document.getElementById("preview").src = e.target.result;
+    };
+    file.readAsDataURL(this.files[0]);
   }
 }
 document.getElementById("tumb").addEventListener("change", readImage, false);
+
 

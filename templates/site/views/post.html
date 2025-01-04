@@ -24,7 +24,7 @@
               alt="..." /></figure>
           <!-- Post texto-->
           <section class="mb-5">
-            <p class="fs-5 mb-4">{{ post.texto }}</p>
+            <p class="fs-5 mb-4">{{ decodeHtml(post.texto) | raw }}</p>
           </section>
           <section class="mb-5">
             <div class="row align-items-center">

@@ -86,6 +86,19 @@ class Helpers
         return strtolower($slug);
     }
 
+    /**
+     * Faz o decode do texto de entidades para HTML
+     * @param string Texto com entidades
+     * @return string Texto com tag HTML
+     */
+
+    public static function decodeHtml($texto):string
+    {
+        $texto_decode = html_entity_decode($texto);
+
+        return $texto_decode;
+    }
+
 
 
     /**
