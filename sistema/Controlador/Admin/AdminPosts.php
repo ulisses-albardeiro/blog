@@ -22,13 +22,13 @@ class AdminPosts extends AdminControlador
     public function cadastrarPost(): void
     {
         if (isset($_FILES['Imagem-editor'])) {
-            $upload_img = new Upload('templates/admin/assets/img');
-            $upload_img->arquivo($_FILES['Imagem-editor'], $_FILES['Imagem-editor']['name'], 'posts');
+            $upload_img = new Upload('templates/site/assets/img');
+            $upload_img->arquivo($_FILES['Imagem-editor'], uniqid(), 'posts');
             if ($upload_img->getResultado()) {
                 $nome_img = $upload_img->getResultado();
                 echo json_encode([
                     'success' => true,
-                    'file' => 'templates/admin/assets/img/posts/' . $nome_img
+                    'file' => Helpers::url('templates/site/assets/img/posts/' . $nome_img)
                 ]);
                 exit;
             }
@@ -73,10 +73,10 @@ class AdminPosts extends AdminControlador
         if (isset($dados)) {
 
             if (isset($_FILES['tumb'])) {
-                $upload = new Upload('templates/admin/assets/img');
+                $upload = new Upload('templates/site/assets/img');
                 $upload->arquivo($_FILES['tumb'], Helpers::slug($dados['titulo']), 'tumbs');
                 if ($upload->getResultado()) {
-                    $nomeArquivo = $upload->getResultado();
+                    $post->tumb = $upload->getResultado();//passa o valor para o BD
                 } else {
                     $this->mensagem->mensagemErro($upload->getErro())->flash();
                 }
@@ -85,13 +85,12 @@ class AdminPosts extends AdminControlador
                 exit;
             }
 
-            //(new PostModelo())->atualizarPost($id, $dados);
             $post = (new PostModelo())->buscaPorId($id);
             $post->titulo = $dados['titulo'];
             $post->categoria_id = $dados['categoria_id'];
-            $post->texto = $dados['texto'];
+            $post->texto = htmlentities($dados['texto']);
             $post->status = $dados['status'];
-            $post->tumb = $nomeArquivo;
+
             if ($post->salvar()) {
                 $this->mensagem->mensagemSucesso('Post editado com sucesso')->flash();
                 Helpers::redirecionar("admin/posts/listar");

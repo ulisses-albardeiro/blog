@@ -48,7 +48,7 @@
 
                         <div class="col-md-6">
                             <label class="form-label">Tumb</label>
-                            <input required type="file" class="form-control" id="tumb" name="tumb" accept="image/*">
+                            <input type="file" value="{{post.tumb}}" class="form-control" id="tumb" name="tumb" accept="image/*">
                         </div>
 
 
@@ -61,7 +61,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="editor" class="form-label">Texto</label>
-                    <textarea id="editor" name="texto" rows="5">{{post.texto}}</textarea>
+                    <textarea id="editor" name="texto" rows="5">{% if post.texto %}{{decodeHtml(post.texto)}}{% endif %}</textarea>
                 </div>
 
                 <input type="submit" class="btn btn-primary"
@@ -109,7 +109,8 @@
                     urlPropertyName: 'file'
                 },
             },
-            autogrow: true
+            autogrow: true,
+            imageWidthModalEdit: true
         });
     });
 </script>
