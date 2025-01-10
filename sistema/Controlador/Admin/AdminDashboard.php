@@ -34,17 +34,14 @@ class AdminDashboard extends AdminControlador
 
    private function visualizacoes(): int
    {
-      $visualizacoes = (new PostModelo())->busca()->resultado(true);
-
-      if (!isset($visualizacoes->visitas)) {
+      if ($visualizacoes = (new PostModelo())->busca()->resultado(true)) {
          $contagem = 0;
          foreach ($visualizacoes as $value) {
             $contagem += $value->visitas;
          }
          return $contagem;
       } 
-
-
+      
       return 0;
    }
 
