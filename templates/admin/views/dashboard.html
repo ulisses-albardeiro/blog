@@ -13,7 +13,7 @@
                 <div class="col-md-3">
                     <div class="card text-white bg-primary">
                         <div class="card-body">
-                            <h5 class="card-title">Visualizações</h5>
+                            <h5 class="card-title">Total de Visualizações</h5>
                             <p class="card-text fs-3">{{ visualizacoes }}</p>
                         </div>
                     </div>
@@ -44,37 +44,30 @@
                 </div>
             </div>
 
+            {% if posts_mais_vistos %}
             <!-- Posts Mais Vistos -->
             <div class="mb-4">
                 <h2 class="h4">Posts Mais Vistos</h2>
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>#</th>
+                            <th>id</th>
                             <th>Título</th>
                             <th>Visualizações</th>
                         </tr>
                     </thead>
                     <tbody>
+                        {% for post_mais_visto in posts_mais_vistos %}
                         <tr>
-                            <td>1</td>
-                            <td>Como aprender PHP</td>
-                            <td>5,678</td>
+                            <td>{{ post_mais_visto.id }}</td>
+                            <td>{{ post_mais_visto.titulo }}</td>
+                            <td>{{ post_mais_visto.visitas }}</td>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Melhores práticas em CSS</td>
-                            <td>4,321</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Otimizando seu código</td>
-                            <td>3,210</td>
-                        </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>
-
+            {% endif %}
             <!-- Gráficos -->
             <div class="row">
                 <div class="col-md-6">
@@ -90,34 +83,6 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">120</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Outros Dados -->
-            <div class="row mt-4">
-                <div class="col-md-4">
-                    <div class="card text-white bg-warning">
-                        <div class="card-body">
-                            <h5 class="card-title">Tempo Médio no Site</h5>
-                            <p class="card-text fs-3">1,234</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card text-white bg-secondary">
-                        <div class="card-body">
-                            <h5 class="card-title">Compartilhamentos</h5>
-                            <p class="card-text fs-3">98</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card text-white bg-dark">
-                        <div class="card-body">
-                            <h5 class="card-title">Posts por Categoria</h5>
-                            <p class="card-text fs-3">8 / Categoria</p>
                         </div>
                     </div>
                 </div>

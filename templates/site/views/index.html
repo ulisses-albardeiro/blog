@@ -20,7 +20,7 @@
             {% if posts is not empty %}
             {% set primeiro_post = posts|first %}
             <div class="card mb-4">
-                <a class="text-decoration-none text-dark" href="{{ url('/post/'~primeiro_post.id) }}">
+                <a class="text-decoration-none text-dark" href="{{ url('/post/'~primeiro_post.slug) }}">
                     <img style="max-height: 500px;" class="card-img-top"
                         src="{{ url('templates/site/assets/img/tumbs/'~primeiro_post.tumb) }}" alt="...">
 
@@ -40,7 +40,7 @@
                     <!-- Blog post-->
 
                     <div class="card mb-4">
-                        <a class="text-decoration-none text-dark" href="{{ url('/post/'~post.id) }}">
+                        <a class="text-decoration-none text-dark" href="{{ url('/post/'~post.slug) }}">
                             <img class="card-img-top" src="{{ url('templates/site/assets/img/tumbs/'~post.tumb) }}">
 
                             <div class="card-body">

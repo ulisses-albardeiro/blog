@@ -8,7 +8,7 @@ try {
     SimpleRouter::setDefaultNamespace('sistema\Controlador');
     SimpleRouter::get(URL_SITE, 'SiteControlador@index');
     SimpleRouter::get(URL_SITE . 'contato', 'SiteControlador@contato');
-    SimpleRouter::get(URL_SITE . 'post/{id}', 'SiteControlador@post');
+    SimpleRouter::get(URL_SITE . 'post/{slug}', 'SiteControlador@post');
     SimpleRouter::get(URL_SITE . 'categorias/{id}', 'SiteControlador@categorias');
     SimpleRouter::post(URL_SITE . 'pesquisa', 'SiteControlador@pesquisa');
 

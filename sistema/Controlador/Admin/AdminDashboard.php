@@ -14,13 +14,17 @@ class AdminDashboard extends AdminControlador
       $visualizacoes = $this->visualizacoes();
       $posts_ativos = (new PostModelo())->busca('status = 1')->resultado(true);
       $posts_inativos = (new PostModelo())->busca('status = 0')->resultado(true);
+      $posts_mais_vistos = (new PostModelo())->busca()->ordem("visitas DESC")->limite("5")->resultado(true);
       $total_categorias = (new CategoriaModelo())->busca()->resultado(true);
+
+
 
       echo $this->template->rendenizar('dashboard.html', [
          'visualizacoes' => $visualizacoes ?? null,
          'posts_ativos' => count($posts_ativos) ?? null,
          'posts_inativos' => isset($posts_inativos) ? count($posts_inativos) : 0,
-         'total_categorias' => isset($total_categorias) ? count($total_categorias) : 0
+         'total_categorias' => isset($total_categorias) ? count($total_categorias) : 0,
+         'posts_mais_vistos' => $posts_mais_vistos
       ]);
    }
 

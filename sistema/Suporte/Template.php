@@ -65,7 +65,7 @@ class Template
                 new \Twig\TwigFunction('decodeHtml', function (string $texto) {
                     return Helpers::decodeHtml($texto);
                 }),
-            )
+            ),
 
         );
     }

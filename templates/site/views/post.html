@@ -20,8 +20,8 @@
               categoria.titulo }}</a>
           </header>
           <!-- Preview imagem-->
-          <figure class="mb-4"><img class="img-fluid rounded" src="{{ url('templates/site/assets/img/tumbs/'~post.tumb) }}"
-              alt="..." /></figure>
+          <figure class="mb-4"><img class="img-fluid rounded"
+              src="{{ url('templates/site/assets/img/tumbs/'~post.tumb) }}" alt="..." /></figure>
           <!-- Post texto-->
           <section class="mb-5">
             <p class="fs-5 mb-4">{{ decodeHtml(post.texto) | raw }}</p>
@@ -30,25 +30,29 @@
             <div class="row align-items-center">
               <p class="col-auto mb-0 fw-bold">Compartilhe este Post:</p>
               <div class="col-auto d-flex gap-3">
+
+
                 <!-- LinkedIn -->
-                <a class="text-dark" href="https://www.linkedin.com/shareArticle?mini=true&url={{ url('/posts/'~post.id) }}&title={{ post.titulo|url_encode }}&summary={{ post.texto[:150]|url_encode }}" target="_blank">
+                <a class="text-dark"
+                  href="https://www.linkedin.com/shareArticle?mini=true&url={{ url('/post/'~post.slug) }}&title={{ post.titulo|url_encode }}&summary={{ post.texto[:150]|url_encode }}"
+                  target="_blank">
                   <i class="bi bi-linkedin fs-2"></i>
                 </a>
                 <!-- WhatsApp -->
-                <a class="text-dark" href="https://api.whatsapp.com/send?text={{ url('/posts/'~post.id)|url_encode }}" target="_blank">
+                <a class="text-dark" href="https://api.whatsapp.com/send?text={{ url('/post/'~post.slug)|url_encode }}"
+                  target="_blank">
                   <i class="bi bi-whatsapp fs-2"></i>
                 </a>
-                
+
                 <!-- Facebook -->
-                <a class="text-dark" href="https://www.facebook.com/sharer/sharer.php?u={{ url('/posts/'~post.id)|url_encode }}" target="_blank">
+                <a class="text-dark"
+                  href="https://www.facebook.com/sharer/sharer.php?u={{ url('/post/'~post.slug)|url_encode }}"
+                  target="_blank">
                   <i class="bi bi-facebook fs-2"></i>
                 </a>
               </div>
             </div>
           </section>
-          
-          
-
         </article>
         <!-- Sessão de comentários-->
         <!-- <section class="mb-5">

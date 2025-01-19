@@ -21,6 +21,8 @@ class AdminPosts extends AdminControlador
 
     public function cadastrarPost(): void
     {
+
+        //Salva a imagem vinda do editor
         if (isset($_FILES['Imagem-editor'])) {
             $upload_img = new Upload('templates/site/assets/img');
             $upload_img->arquivo($_FILES['Imagem-editor'], uniqid(), 'posts');
@@ -51,6 +53,7 @@ class AdminPosts extends AdminControlador
             $post->texto = htmlentities($dados['texto']);
             $post->status = $dados['status'];
             $post->tumb = $nomeArquivo;
+            $post->slug = Helpers::slug($dados['titulo']);
             if ($post->salvar()) {
                 $this->mensagem->mensagemSucesso('Post cadastrado com sucesso')->flash();
                 Helpers::redirecionar('admin/posts/listar');
@@ -90,6 +93,7 @@ class AdminPosts extends AdminControlador
             $post->categoria_id = $dados['categoria_id'];
             $post->texto = htmlentities($dados['texto']);
             $post->status = $dados['status'];
+            $post->slug = Helpers::slug($dados['titulo']);
 
             if ($post->salvar()) {
                 $this->mensagem->mensagemSucesso('Post editado com sucesso')->flash();
