@@ -2,15 +2,6 @@
 
 {% block conteudo %}
 
-<!-- Page header with logo and tagline-->
-<!-- <header style="background-image: url('templates/site/assets/img/banner.png');" class="py-5 bg-light border-bottom mb-4">
-    <div class="container">
-        <div class="text-center my-5">
-            <h1 class="fw-bolder text-white">Descubra Insights sobre PHP, Desenvolvimento de
-                Software e Desenvolvimento Pessoal.</h1>
-        </div>
-    </div>
-</header> -->
 <!-- Page content-->
 <div class="container pt-5">
     <div class="row">
@@ -19,42 +10,28 @@
         <div class="col-lg-8">
             <h3 class="pb-5">Resultados para: <i>{{ pesquisa }}</i></h3>
             {% if posts is not empty %}
-            <!-- Linha aninhada para postagens de blog não destacadas-->
+            <!-- Linha aninhada para postagens de blog -->
             <div class="row">
                 {% for post in posts %}
                 <div class="col-lg-6">
                     <!-- Blog post-->
                     <div class="card mb-4">
-                        <a href="{{ url('/post/'~post.id) }}">
-                            <img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="...">
+                        <a href="{{ url('/post/'~post.slug) }}">
+                            <img class="card-img-top" src="{{ url('templates/site/assets/img/tumbs/'~post.tumb) }}"
+                                alt="{{ post.titulo }}">
                         </a>
                         <div class="card-body">
                             <div class="small text-muted">{{ contagemTempo(post.data_post) }}</div>
                             <h2 class="card-title h4">{{ post.titulo }}</h2>
-                            <p class="card-text">{{ textoResumido(post.texto, 100) }}</p>
-                            <a class="btn btn-primary" href="{{ url('/post/'~post.id) }}">Leia mais</a>
+                            <p class="card-text">{{ decodeHtml(textoResumido(post.texto, 200)) | raw }}</p>
                         </div>
                     </div>
                 </div>
                 {% endfor %}
-            </div>
+            </div> <!-- Fecha o row das postagens -->
             {% else %}
             <p>Nenhum post encontrado.</p>
             {% endif %}
-            <!-- Pagination-->
-            <nav aria-label="Pagination">
-                <hr class="my-0" />
-                <ul class="pagination justify-content-center my-4">
-                    <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1"
-                            aria-disabled="true">Newer</a></li>
-                    <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">3</a></li>
-                    <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">15</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">Older</a></li>
-                </ul>
-            </nav>
         </div>
 
         <!-- sidebar -->

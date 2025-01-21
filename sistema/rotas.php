@@ -47,6 +47,7 @@ try {
     });
 
     SimpleRouter::start();
+    
 } catch (Exception $e) {
 
     if (Helpers::localhost()) {
