@@ -25,6 +25,7 @@ class AdminCategorias extends AdminControlador
             $categoria->titulo = $dados['titulo'];
             $categoria->descricao = $dados['descricao'];
             $categoria->status = $dados['status'];
+            $categoria->slug = Helpers::slug($dados['titulo']);
 
             if ($categoria->salvar()) {
                 $this->mensagem->mensagemSucesso('Categoria cadastrada com sucesso')->flash();
@@ -45,6 +46,8 @@ class AdminCategorias extends AdminControlador
             $categoria->titulo = $dados['titulo'];
             $categoria->descricao = $dados['descricao'];
             $categoria->status = $dados['status'];
+            $categoria->slug = Helpers::slug($dados['titulo']);
+
 
             if ($categoria->salvar()) {
                 $this->mensagem->mensagemSucesso('Categoria editada com sucesso')->flash();

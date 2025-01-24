@@ -50,7 +50,7 @@ class AdminPosts extends AdminControlador
             $post = new PostModelo;
             $post->titulo = $dados['titulo'];
             $post->categoria_id = $dados['categoria_id'];
-            $post->texto = htmlentities($dados['texto']);
+            $post->texto = $dados['texto'];
             $post->status = $dados['status'];
             $post->tumb = $nomeArquivo;
             $post->slug = Helpers::slug($dados['titulo']);
@@ -91,7 +91,7 @@ class AdminPosts extends AdminControlador
             $post = (new PostModelo())->buscaPorId($id);
             $post->titulo = $dados['titulo'];
             $post->categoria_id = $dados['categoria_id'];
-            $post->texto = htmlentities($dados['texto']);
+            $post->texto = $dados['texto'];
             $post->status = $dados['status'];
             $post->slug = Helpers::slug($dados['titulo']);
 

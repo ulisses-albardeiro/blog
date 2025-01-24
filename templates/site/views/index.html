@@ -11,6 +11,7 @@
         </div>
     </div>
 </header>
+
 <!-- Page content-->
 <div class="container">
     <div class="row">
@@ -18,27 +19,13 @@
         <div class="col-lg-8">
             <!-- Featured blog post-->
             {% if posts is not empty %}
-            {% set primeiro_post = posts|first %}
-            <div class="card mb-4">
-                <a class="text-decoration-none text-dark" href="{{ url('/post/'~primeiro_post.slug) }}">
-                    <img style="max-height: 500px;" class="card-img-top"
-                        src="{{ url('templates/site/assets/img/tumbs/'~primeiro_post.tumb) }}" alt="...">
-
-                    <div class="card-body">
-                        <div class="small text-muted">Postado {{contagemTempo(primeiro_post.data_post)}}</div>
-                        <h2 class="card-title">{{ primeiro_post.titulo }}</h2>
-                        <p class="card-text">{{ decodeHtml(textoResumido(primeiro_post.texto, 200)) | raw }}</p>
-
-                    </div>
-                </a>
-            </div>
+            
 
             <!-- Linha aninhada para postagens de blog não destacadas-->
             <div class="row">
-                {% for post in posts|slice(1) %}
+                {% for post in posts %}
                 <div class="col-lg-6">
                     <!-- Blog post-->
-
                     <div class="card mb-4">
                         <a class="text-decoration-none text-dark" href="{{ url('/post/'~post.slug) }}">
                             <img class="card-img-top" src="{{ url('templates/site/assets/img/tumbs/'~post.tumb) }}">
@@ -46,8 +33,7 @@
                             <div class="card-body">
                                 <div class="small text-muted">Postado {{contagemTempo(post.data_post)}}</div>
                                 <h2 class="card-title h4">{{ post.titulo }}</h2>
-                                <p class="card-text">{{ decodeHtml(textoResumido(post.texto, 100)) | raw }}</p>
-
+                                <p class="card-text">{{ textoResumido(post.texto, 100) | raw }}</p>
                             </div>
                         </a>
                     </div>
@@ -59,7 +45,8 @@
             {% endif %}
         </div>
 
-        {% include 'sidebar.html' %}
+        <!-- Sidebar (coluna à direita) -->
+            {% include 'sidebar.html' %}
     </div>
 </div>
 

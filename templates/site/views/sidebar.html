@@ -21,7 +21,7 @@
                 <div class="col-sm-6">
                     <ul class="list-unstyled mb-0">
                         {% for categoriaE in categoriasEsquerda %}
-                        <li><a class="text-decoration-none text-dark" href="{{ url('/categorias/'~categoriaE.id) }}">{{
+                        <li><a class="text-decoration-none text-dark" href="{{ url('/categorias/'~categoriaE.slug) }}">{{
                                 categoriaE.titulo }}</a></li>
                         {% endfor %}
                     </ul>
@@ -29,7 +29,7 @@
                 <div class="col-sm-6">
                     <ul class="list-unstyled mb-0">
                         {% for categoriaD in categoriasDireita %}
-                        <li><a class="text-decoration-none text-dark" href="{{ url('/categorias/'~categoriaD.id) }}">{{
+                        <li><a class="text-decoration-none text-dark" href="{{ url('/categorias/'~categoriaD.slug) }}">{{
                                 categoriaD.titulo }}</a></li>
                         {% endfor %}
                     </ul>

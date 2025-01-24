@@ -25,7 +25,7 @@ class SiteControlador extends Controlador
         $categoriasDireita = array_slice($categorias, $metade);
 
         echo $this->template->rendenizar('index.html', [
-            'titulo' => 'Ulisses Alba',
+            'titulo' => 'Ulisses Albardeiro',
             'posts' => $posts->resultado(true), 
 
             'categoriasEsquerda' => $categoriasEsquerda,
@@ -78,7 +78,6 @@ class SiteControlador extends Controlador
             Helpers::redirecionar('404');
         }
 
-        //envia dados para a página post
         echo $this->template->rendenizar('post.html', [
             'post' => $post,
             'categoria' => $categoria,
@@ -93,12 +92,12 @@ class SiteControlador extends Controlador
         $post->salvar();
     }
 
-    public function categorias(int $id): void
+    public function categorias(string $slug): void
     {
-        $posts = (new PostModelo())->busca('categoria_id = :id', 'id=' . $id)->resultado(true);
         $categorias = (new CategoriaModelo())->busca()->resultado(true);
+        $categoria = (new CategoriaModelo())->busca('slug = :s', ':s='.$slug)->resultado();
+        $posts = (new PostModelo())->busca('categoria_id = :i', ':i='.$categoria->id)->resultado(true);
 
-        $categoria = (new CategoriaModelo())->busca('id = :id', 'id=' . $id)->resultado();
 
         // Divide as categorias em duas partes
         $metade = ceil(count($categorias) / 2);

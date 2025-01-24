@@ -1,7 +1,6 @@
 <?php
 
 use Pecee\SimpleRouter\SimpleRouter;
-use sistema\Controlador\SiteControlador;
 use sistema\Nucleo\Helpers;
 
 try {
@@ -9,7 +8,7 @@ try {
     SimpleRouter::get(URL_SITE, 'SiteControlador@index');
     SimpleRouter::get(URL_SITE . 'contato', 'SiteControlador@contato');
     SimpleRouter::get(URL_SITE . 'post/{slug}', 'SiteControlador@post');
-    SimpleRouter::get(URL_SITE . 'categorias/{id}', 'SiteControlador@categorias');
+    SimpleRouter::get(URL_SITE . 'categorias/{slug}', 'SiteControlador@categorias');
     SimpleRouter::post(URL_SITE . 'pesquisa', 'SiteControlador@pesquisa');
 
     SimpleRouter::get(URL_SITE . '404', 'SiteControlador@erro404');
