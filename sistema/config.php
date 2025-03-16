@@ -7,11 +7,11 @@ define('DB_HOST', 'localhost');
 define('DB_USUARIO', 'root');
 define('DB_SENHA', '');
 
-define('SITE_NAME', 'Site');
-define('SITE_DESC', 'Projeto');
+define('SITE_NAME', 'Ulisses');
+define('SITE_DESC', 'Albardeiro');
 
-define('PRODUCTION_URL', 'https://ulissesalba.com');
-define('DEVELOPMENT_URL', 'http://localhost/blog');
+define('PRODUCTION_URL', 'https://ulissesalbardeiro.com.br');
+define('DEVELOPMENT_URL', 'http://localhost/pessoal/blog');
 
-define('URL_SITE', 'blog/');
-define('URL_ADMIN','blog/admin/');
+define('URL_SITE', 'pessoal/blog/');
+define('URL_ADMIN','pessoal/blog/admin/');

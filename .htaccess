@@ -2,7 +2,7 @@ options -indexes
 
 RewriteEngine on
 
-RewriteBase /blog
+RewriteBase /pessoal/blog
 
 RewriteCond %{SCRIPT_FILENAME} !-f
 RewriteCond %{SCRIPT_FILENAME} !-d
