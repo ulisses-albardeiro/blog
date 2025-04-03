@@ -42,6 +42,11 @@ try {
         SimpleRouter::match(['get', 'post'], URL_ADMIN. 'usuario/editar/{id}', 'AdminUsuarios@editarUsuario');
         SimpleRouter::get(URL_ADMIN. 'usuario/excluir/{id}', 'AdminUsuarios@excluirUsuario');
 
+        //Rotas recuuperação de senha
+        SimpleRouter::match(['get', 'post'], URL_ADMIN . 'recuperacao-de-senha', 'EmailRecuperacao@emailRecuperacao');
+        SimpleRouter::match(['get', 'post'], URL_ADMIN . 'nova-senha/', 'NovaSenha@novaSenha');
+        SimpleRouter::match(['get', 'post'], URL_ADMIN . 'salvar-senha', 'NovaSenha@salvarNovaSenha');
+
 
     });
 

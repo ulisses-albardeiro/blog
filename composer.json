@@ -16,6 +16,7 @@
     ],
     "require": {
         "pecee/simple-router": "5.4.1.7",
-        "twig/twig": "^3.14"
+        "twig/twig": "^3.14",
+        "phpmailer/phpmailer": "^6.9"
     }
 }

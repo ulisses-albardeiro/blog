@@ -14,4 +14,10 @@ define('PRODUCTION_URL', 'https://ulissesalbardeiro.com.br');
 define('DEVELOPMENT_URL', 'http://localhost/pessoal/blog');
 
 define('URL_SITE', 'pessoal/blog/');
-define('URL_ADMIN','pessoal/blog/admin/');
+define('URL_ADMIN', 'pessoal/blog/admin/');
+
+//Reculperação de Senha
+define('HOST_EMAIL', 'smtp.hostinger.com');
+define('USUARIO_EMAIL', '');
+define('SENHA_EMAIL', '');
+define('PORTA_EMAIL', 465);
