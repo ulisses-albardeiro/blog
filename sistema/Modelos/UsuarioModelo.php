@@ -23,14 +23,11 @@ class UsuarioModelo extends Modelo
         (new Sessao)->criarSessao('usuarioId', $usuario->id);
 
         $this->mensagem->mensagemSucesso("Bem vindo, {$usuario->nome}")->flash();
-
-
         return true;
     }
 
     public function validacao(string $usuario, string $senha): ?UsuarioModelo
-    {
-    
+    {   
         $busca_usuario = $this->busca("email = :email", ":email={$usuario}")->resultado();
         
         if ($busca_usuario && password_verify($senha, $busca_usuario->senha)) {

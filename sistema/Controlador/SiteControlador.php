@@ -16,8 +16,8 @@ class SiteControlador extends Controlador
 
     public function index(): void
     {
-        $posts = (new PostModelo())->busca()->ordem('id DESC')->limite(6); 
-        $categorias = (new CategoriaModelo())->busca()->resultado(true); 
+        $posts = (new PostModelo())->busca("status = 1")->ordem('id DESC')->resultado(true) ?? []; 
+        $categorias = (new CategoriaModelo())->busca("status = 1")->resultado(true) ?? []; 
 
         // Divide as categorias em duas partes
         $metade = ceil(count($categorias) / 2);
@@ -26,7 +26,7 @@ class SiteControlador extends Controlador
 
         echo $this->template->rendenizar('index.html', [
             'titulo' => 'Ulisses Albardeiro',
-            'posts' => $posts->resultado(true), 
+            'posts' => $posts, 
 
             'categoriasEsquerda' => $categoriasEsquerda,
             'categoriasDireita' => $categoriasDireita
