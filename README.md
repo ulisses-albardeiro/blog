@@ -1,9 +1,24 @@
-# Ulisses Albardeiro - Blog
-# Produção: https://ulissesalbardeiro.com.br
+# Ulisses Albardeiro - Blog Pessoal
 
-Repositório blog pessoal. O projeto está configurado para rodar em ambiente local e produção, com rotas amigáveis utilizando `.htaccess`.
+Blog pessoal desenvolvido em PHP com sistema de administração. O projeto está configurado para rodar em ambiente local e produção, com rotas amigáveis utilizando `.htaccess`.
 
-## Configuração
+**URL de produção:** https://ulissesalbardeiro.com.br
+
+## Requisitos
+- PHP 8.2+
+- MySQL 5.7+
+- Composer (para dependências)
+
+## Instalação
+
+1. Clone o repositório
+2. Crie os arquivos 'config.php' e 'htaccess' (veja as seções arquivo)
+3. Configure o banco de dados (veja seção Banco de Dados)
+4. Instale as dependências:
+
+```bash
+composer install
+```
 
 ### Arquivo `config.php`
 
@@ -24,13 +39,20 @@ define('DEVELOPMENT_URL', 'http://localhost/caminho_para_o_projeto/');
 define('URL_SITE', '/caminho_para_o_projeto/');
 define('URL_ADMIN','/admin/');
 ```
+
+
 ### Arquivo `htaccess`
 
 ```
 Options -Indexes
 
 RewriteEngine on
-RewriteBase /caminho_para_o_projeto/
+
+#ambiente de produção (descomentar)
+#RewriteBase /
+
+#ambiente de desenvolvimento (descomentar)
+#RewriteBase /caminho_para_o_projeto/
 
 RewriteCond %{SCRIPT_FILENAME} !-f
 RewriteCond %{SCRIPT_FILENAME} !-d
@@ -38,6 +60,8 @@ RewriteCond %{SCRIPT_FILENAME} !-l
 
 RewriteRule ^(.*)$ index.php/$1
 ```
+
+
 ## Banco de Dados
 
-O banco de dados pode ser restaurado a partir do arquivo `BD/blog.sql`. Para acessar o painel admin é necessário criar manualmente o usuário e senha diretamento na tabela 'usuários'
+O banco de dados pode ser restaurado a partir do arquivo `BD/blog.sql`. Para acessar o painel admin é necessário criar manualmente o usuário e senha diretamento na tabela 'usuários'.
