@@ -5,7 +5,7 @@
         <div class="card-header bg-dark text-white">Pesquisar</div>
         <div class="card-body">
             <div class="input-group">
-                <form class="d-flex" action="{{url('/pesquisa')}}" method="post">
+                <form class="d-flex" action="{{url('pesquisa')}}" method="post">
                     <input name="pesquisa" class="form-control" type="search" placeholder="Pesquisar"
                         aria-label="Search">
                     <button class="btn btn-dark" type="submit"><i class="bi bi-search"></i></button>
@@ -21,7 +21,7 @@
                 <div class="col-sm-6">
                     <ul class="list-unstyled mb-0">
                         {% for categoriaE in categoriasEsquerda %}
-                        <li><a class="text-decoration-none text-dark" href="{{ url('/categorias/'~categoriaE.slug) }}">{{
+                        <li><a class="text-decoration-none text-dark" href="{{ url('categorias/'~categoriaE.slug) }}">{{
                                 categoriaE.titulo }}</a></li>
                         {% endfor %}
                     </ul>
@@ -29,7 +29,7 @@
                 <div class="col-sm-6">
                     <ul class="list-unstyled mb-0">
                         {% for categoriaD in categoriasDireita %}
-                        <li><a class="text-decoration-none text-dark" href="{{ url('/categorias/'~categoriaD.slug) }}">{{
+                        <li><a class="text-decoration-none text-dark" href="{{ url('categorias/'~categoriaD.slug) }}">{{
                                 categoriaD.titulo }}</a></li>
                         {% endfor %}
                     </ul>

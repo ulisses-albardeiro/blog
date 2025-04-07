@@ -5,7 +5,6 @@ use sistema\Nucleo\Sessao;
 
 class Helpers
 {
-
     /**
      * Redireciona o navegador para uma URL especificada.
      *
@@ -15,7 +14,7 @@ class Helpers
      * @param string|null $url A URL para redirecionar. Se nulo, redireciona para a URL padrão (404).
      *
      */
-    public static function redirecionar(string $url = null): void
+    public static function redirecionar(?string $url = null): void
     {
         header('HTTP/1.1 302 Found');
         $local = ($url ? self::url($url) : self::url());
@@ -99,15 +98,13 @@ class Helpers
         return $texto_decode;
     }
 
-
-
     /**
      * Monta a URL de acordo com o ambiente.
      * @param string $url Parte do caminho (ex.: 'admin' ou '/admin').
      * @return string URL completa do ambiente atual.
      */
 
-    public static function url(string $url = null): string
+    public static function url(?string $url = null): string
     {
         $servidor = filter_input(INPUT_SERVER, 'SERVER_NAME');
         $ambiente = ($servidor == 'localhost' ? DEVELOPMENT_URL : PRODUCTION_URL);
@@ -175,7 +172,6 @@ class Helpers
             return $yers == 1 ? 'há 1 ano' : 'há ' . $yers . ' anos';
         }
     }
-
 
     public static function flash(): ? string
     {

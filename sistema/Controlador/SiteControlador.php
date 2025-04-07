@@ -96,8 +96,7 @@ class SiteControlador extends Controlador
     {
         $categorias = (new CategoriaModelo())->busca()->resultado(true);
         $categoria = (new CategoriaModelo())->busca('slug = :s', ':s='.$slug)->resultado();
-        $posts = (new PostModelo())->busca('categoria_id = :i', ':i='.$categoria->id)->resultado(true);
-
+        $posts = (new PostModelo())->busca("categoria_id = '{$categoria->id}' AND status = 1")->resultado(true);
 
         // Divide as categorias em duas partes
         $metade = ceil(count($categorias) / 2);
@@ -106,7 +105,6 @@ class SiteControlador extends Controlador
 
         echo $this->template->rendenizar('categorias.html', [
             'posts' => $posts,
-
             'categoria' => $categoria,
             'categoriasEsquerda' => $categoriasEsquerda,
             'categoriasDireita' => $categoriasDireita
