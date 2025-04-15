@@ -31,7 +31,7 @@
                             <img class="card-img-top" src="{{ url('templates/site/assets/img/tumbs/'~post.tumb) }}">
 
                             <div class="card-body">
-                                <div class="small text-muted">Postado {{contagemTempo(post.data_post)}}</div>
+                                <div class="small text-muted">Postado {{contagemTempo(post.data_cadastro)}}</div>
                                 <h2 class="card-title h4">{{ post.titulo }}</h2>
                                 <p class="card-text">{{ textoResumido(post.texto, 100) | raw }}</p>
                             </div>

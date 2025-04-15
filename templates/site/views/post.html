@@ -14,7 +14,7 @@
             <!-- Post title-->
             <h1 class="fw-bolder mb-1">{{ post.titulo }}</h1>
             <!-- Post meta content-->
-            <div class="text-muted fst-italic mb-2">Postado {{ contagemTempo(post.data_post)}}</div>
+            <div class="text-muted fst-italic mb-2">Postado {{ contagemTempo(post.data_cadastro)}}</div>
             <!-- Post categories-->
             <a class="badge bg-primary text-decoration-none link-light" href="{{ url('/categorias/'~categoria.slug) }}">{{
               categoria.titulo }}</a>
