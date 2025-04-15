@@ -34,10 +34,16 @@ define('SITE_NAME', '');
 define('SITE_DESC', '');
 
 define('PRODUCTION_URL', 'https://seu_site.com.br');
-define('DEVELOPMENT_URL', 'http://localhost/caminho_para_o_projeto/');
+define('DEVELOPMENT_URL', 'http://localhost/caminho_para_o_projeto');
 
 define('URL_SITE', '/caminho_para_o_projeto/');
 define('URL_ADMIN','/admin/');
+
+#Configurações para recuperação de senha (opcional)
+define('HOST_EMAIL', '');
+define('USUARIO_EMAIL', '');
+define('SENHA_EMAIL', '');
+define('PORTA_EMAIL', '');
 ```
 
 

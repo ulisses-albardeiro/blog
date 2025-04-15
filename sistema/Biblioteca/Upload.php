@@ -41,7 +41,7 @@ class Upload
      * Caso não seja fornecido, o valor padrão será 'uploads'.
      */
 
-    public function __construct(string $diretorio = null)
+    public function __construct(?string $diretorio = null)
     {
         $this->diretorio = $diretorio ?? 'uploads';
 
@@ -86,7 +86,7 @@ class Upload
      */
 
 
-    public function arquivo(array $arquivo, string $nome = null,  string $diretorioFilho = null, int $tamanho = null): void
+    public function arquivo(array $arquivo, ?string $nome = null,  ?string $diretorioFilho = null, ?int $tamanho = null): void
     {
         $this->arquivo = $arquivo;
         $this->nome = $nome ?? pathinfo($this->arquivo['name'], PATHINFO_FILENAME);

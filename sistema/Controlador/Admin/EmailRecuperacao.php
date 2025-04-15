@@ -28,7 +28,7 @@ class EmailRecuperacao extends Controlador
             $this->salvarToken($dados_usuario->id, $this->token);
             $this->enviarEmail($email, $dados_usuario->nome);
             $this->mensagem->mensagemSucesso("Um link de reculperação de senha foi enviado para o seu email")->flash();
-            Helpers::redirecionar('login');
+            Helpers::redirecionar('admin/login');
         }
 
         echo $this->template->rendenizar('reculperacao-senha/email-de-recuperacao.html', ['email' => $email]);
