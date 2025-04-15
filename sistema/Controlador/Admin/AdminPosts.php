@@ -79,7 +79,7 @@ class AdminPosts extends AdminControlador
                 $upload = new Upload('templates/site/assets/img');
                 $upload->arquivo($_FILES['tumb'], Helpers::slug($dados['titulo']), 'tumbs');
                 if ($upload->getResultado()) {
-                    $post->tumb = $upload->getResultado();//passa o valor para o BD
+                    $nomeArquivo = $upload->getResultado();//passa o valor para o BD
                 } else {
                     $this->mensagem->mensagemErro($upload->getErro())->flash();
                 }
@@ -92,6 +92,7 @@ class AdminPosts extends AdminControlador
             $post->titulo = $dados['titulo'];
             $post->categoria_id = $dados['categoria_id'];
             $post->texto = $dados['texto'];
+            $post->tumb = $nomeArquivo;
             $post->status = $dados['status'];
             $post->slug = Helpers::slug($dados['titulo']);
 
@@ -100,7 +101,6 @@ class AdminPosts extends AdminControlador
                 Helpers::redirecionar("admin/posts/listar");
             }
         }
-
 
         $categorias = (new CategoriaModelo())->busca()->resultado(true); //Lista os dados das categorias na edição
         echo $this->template->rendenizar('posts/cadastrar.html', [
