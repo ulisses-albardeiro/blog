@@ -38,21 +38,12 @@ class AdminPosts extends AdminControlador
 
         $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
-        if (isset($_FILES['tumb'])) {
-            $upload = new Upload('templates/site/assets/img');
-            $upload->arquivo($_FILES['tumb'], Helpers::slug($dados['titulo']), 'tumbs');
-            if ($upload->getResultado()) {
-                $nomeArquivo = $upload->getResultado();
-            }
-        }
-
         if (isset($dados)) {
             $post = new PostModelo;
             $post->titulo = $dados['titulo'];
             $post->categoria_id = $dados['categoria_id'];
             $post->texto = $dados['texto'];
             $post->status = $dados['status'];
-            $post->tumb = $nomeArquivo;
             $post->slug = Helpers::slug($dados['titulo']);
             if ($post->salvar()) {
                 $this->mensagem->mensagemSucesso('Post cadastrado com sucesso')->flash();

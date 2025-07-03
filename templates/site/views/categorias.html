@@ -23,8 +23,6 @@
                     <!-- Blog post-->
                     <div class="card mb-4">
                         <a class="text-decoration-none text-dark" href="{{ url('/post/'~post.slug) }}">
-                            <img class="card-img-top" src="{{ url('templates/site/assets/img/tumbs/'~post.tumb) }}"
-                                alt="{{ post.titulo }}">
                             <div class="card-body">
                                 <div class="small text-muted">{{ contagemTempo(post.data_post) }}</div>
                                 <h2 class="card-title h4">{{ post.titulo }}</h2>

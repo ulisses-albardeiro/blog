@@ -16,12 +16,10 @@
             <!-- Post meta content-->
             <div class="text-muted fst-italic mb-2">Postado {{ contagemTempo(post.data_cadastro)}}</div>
             <!-- Post categories-->
-            <a class="badge bg-primary text-decoration-none link-light" href="{{ url('/categorias/'~categoria.slug) }}">{{
+            <a class="badge bg-primary text-decoration-none link-light"
+              href="{{ url('/categorias/'~categoria.slug) }}">{{
               categoria.titulo }}</a>
           </header>
-          <!-- Preview imagem-->
-          <figure class="mb-4"><img class="img-fluid rounded"
-              src="{{ url('templates/site/assets/img/tumbs/'~post.tumb) }}" alt="..." /></figure>
           <!-- Post texto-->
           <section class="mb-5">
             <p class="fs-5 mb-4">{{ decodeHtml(post.texto) | raw }}</p>

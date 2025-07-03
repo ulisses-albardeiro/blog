@@ -46,12 +46,6 @@
                             </select>
                         </div>
 
-                        <div class="col-md-6">
-                            <label class="form-label">Tumb</label>
-                            <input type="file" value="{{post.tumb}}" class="form-control" id="tumb" name="tumb" accept="image/*">
-                        </div>
-
-
                         <div class="col-md-2">
                             <img id="preview" style="max-width: 150px;"
                                 src="{% if post.tumb %} {{ url('templates/site/assets/img/tumbs/'~post.tumb) }} {% endif %}">
