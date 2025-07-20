@@ -9,19 +9,16 @@ use sistema\Nucleo\Helpers;
 
 class AdminPosts extends AdminControlador
 {
-
     public function listar(): void
     {
-        $posts = (new PostModelo())->busca()->ordem('id DESC')->resultado(true); //Busca o titulo e textos do post
+        $posts = (new PostModelo())->busca()->ordem('id DESC')->resultado(true);
         echo $this->template->rendenizar('posts/listar.html', [
             'posts' => $posts,
         ]);
     }
 
-
     public function cadastrarPost(): void
     {
-
         //Salva a imagem vinda do editor
         if (isset($_FILES['Imagem-editor'])) {
             $upload_img = new Upload('templates/site/assets/img');
@@ -66,24 +63,10 @@ class AdminPosts extends AdminControlador
         $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         if (isset($dados)) {
 
-            if (isset($_FILES['tumb'])) {
-                $upload = new Upload('templates/site/assets/img');
-                $upload->arquivo($_FILES['tumb'], Helpers::slug($dados['titulo']), 'tumbs');
-                if ($upload->getResultado()) {
-                    $nomeArquivo = $upload->getResultado();//passa o valor para o BD
-                } else {
-                    $this->mensagem->mensagemErro($upload->getErro())->flash();
-                }
-            } else {
-                $this->mensagem->mensagemAtencao('A tumb do post é obrigatória')->flash();
-                exit;
-            }
-
             $post = (new PostModelo())->buscaPorId($id);
             $post->titulo = $dados['titulo'];
             $post->categoria_id = $dados['categoria_id'];
             $post->texto = $dados['texto'];
-            $post->tumb = $nomeArquivo;
             $post->status = $dados['status'];
             $post->slug = Helpers::slug($dados['titulo']);
 
