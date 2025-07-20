@@ -14,11 +14,8 @@ Blog pessoal desenvolvido em PHP com sistema de administração. O projeto está
 1. Clone o repositório
 2. Crie os arquivos 'config.php' e 'htaccess' (veja as seções arquivo)
 3. Configure o banco de dados (veja seção Banco de Dados)
-4. Instale as dependências:
+4. Instale as dependências com composer install:
 
-```bash
-composer install
-```
 
 ### Arquivo `config.php`
 
@@ -67,6 +64,9 @@ RewriteCond %{SCRIPT_FILENAME} !-l
 RewriteRule ^(.*)$ index.php/$1
 ```
 
+```bash
+composer install
+```
 
 ## Banco de Dados
 

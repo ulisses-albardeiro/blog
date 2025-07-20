@@ -5,31 +5,97 @@ namespace sistema\Nucleo;
 use sistema\Nucleo\Conexao;
 use sistema\Nucleo\Mensagem;
 
+/**
+ * Classe abstrata Modelo
+ * Fornece a base para interações com o banco de dados, incluindo operações CRUD.
+ *
+ * @package sistema\Nucleo
+ */
 abstract class Modelo
 {
+    /**
+     * Armazena os dados do modelo.
+     * @var \stdClass|null
+     */
     protected $dados;
-    protected $query;
-    protected $erro;
-    protected $parametros;
-    protected $tabela;
-    protected $ordem;
-    protected $limite;
-    protected $offset;
-    protected $mensagem;
 
+    /**
+     * Armazena a string da query SQL.
+     * @var string|null
+     */
+    protected ?string $query = null;
+
+    /**
+     * Armazena o objeto de erro (Throwable) em caso de exceção.
+     * @var \Throwable|null
+     */
+    protected ?\Throwable $erro = null;
+
+    /**
+     * Armazena os parâmetros para a execução da query.
+     * @var array|null
+     */
+    protected ?array $parametros = null;
+
+    /**
+     * Nome da tabela no banco de dados.
+     * @var string
+     */
+    protected string $tabela;
+
+    /**
+     * String para cláusula ORDER BY.
+     * @var string|null
+     */
+    protected ?string $ordem = null;
+
+    /**
+     * String para cláusula LIMIT.
+     * @var string|null
+     */
+    protected ?string $limite = null;
+
+    /**
+     * String para cláusula OFFSET.
+     * @var string|null
+     */
+    protected ?string $offset = null;
+
+    /**
+     * Instância da classe Mensagem para manipulação de mensagens.
+     * @var Mensagem
+     */
+    protected Mensagem $mensagem;
+
+    /**
+     * Construtor da classe Modelo.
+     *
+     * @param string $tabela O nome da tabela do banco de dados para este modelo.
+     */
     public function __construct(string $tabela)
     {
         $this->tabela = $tabela;
-
-        $this->mensagem = new Mensagem;
+        $this->mensagem = new Mensagem();
     }
 
-    public function dados()
+    /**
+     * Retorna os dados do modelo.
+     *
+     * @return \stdClass|null Um objeto stdClass contendo os dados do modelo ou null se não houver dados.
+     */
+    public function dados(): ?\stdClass
     {
         return $this->dados;
     }
 
-    public function __set($nome, $valor)
+    /**
+     * Método mágico para definir propriedades dinamicamente no objeto de dados.
+     *
+     * @param string $nome  O nome da propriedade a ser definida.
+     * @param mixed  $valor O valor a ser atribuído à propriedade.
+     * @return mixed O valor que foi atribuído.
+     */
+    public function __set(string $nome, mixed $valor)
     {
         if (!$this->dados) {
             $this->dados = new \stdClass();
@@ -38,49 +104,97 @@ abstract class Modelo
         return $this->dados->$nome = $valor;
     }
 
-    public function __isset($nome)
+    /**
+     * Método mágico para verificar se uma propriedade existe no objeto de dados.
+     *
+     * @param string $nome O nome da propriedade a ser verificada.
+     * @return bool True se a propriedade existir, false caso contrário.
+     */
+    public function __isset(string $nome): bool
     {
         return isset($this->dados->$nome);
     }
 
-    public function __get($nome)
+    /**
+     * Método mágico para obter o valor de uma propriedade do objeto de dados.
+     *
+     * @param string $nome O nome da propriedade a ser obtida.
+     * @return mixed O valor da propriedade ou null se não existir.
+     */
+    public function __get(string $nome): mixed
     {
         return $this->dados->$nome ?? null;
     }
 
-    public function ordem(string $ordem)
+    /**
+     * Adiciona uma cláusula ORDER BY à consulta.
+     *
+     * @param string $ordem A string da ordem (ex: "id DESC", "nome ASC").
+     * @return Modelo Retorna a própria instância do modelo para encadeamento.
+     */
+    public function ordem(string $ordem): Modelo
     {
         $this->ordem = " ORDER BY {$ordem} ";
         return $this;
     }
 
-    public function limite(string $limite)
+    /**
+     * Adiciona uma cláusula LIMIT à consulta.
+     *
+     * @param string $limite A string do limite (ex: "10").
+     * @return Modelo Retorna a própria instância do modelo para encadeamento.
+     */
+    public function limite(string $limite): Modelo
     {
         $this->limite = " LIMIT {$limite} ";
         return $this;
     }
 
-    public function offset(string $offset)
+    /**
+     * Adiciona uma cláusula OFFSET à consulta.
+     *
+     * @param string $offset A string do offset (ex: "5").
+     * @return Modelo Retorna a própria instância do modelo para encadeamento.
+     */
+    public function offset(string $offset): Modelo
     {
         $this->offset = " OFFSET {$offset} ";
         return $this;
     }
 
-    public function erro()
+    /**
+     * Retorna o último erro ocorrido durante uma operação.
+     *
+     * @return \Throwable|null O objeto Throwable do erro ou null se não houver erro.
+     */
+    public function erro(): ?\Throwable
     {
         return $this->erro;
     }
 
-    public function mensagem()
+    /**
+     * Retorna a instância da classe Mensagem.
+     *
+     * @return Mensagem A instância da classe Mensagem.
+     */
+    public function mensagem(): Mensagem
     {
         return $this->mensagem;
     }
 
-    function busca(?string $termos = null, ?string $parametros = null, string $colunas = '*')
+    /**
+     * Inicia uma busca no banco de dados.
+     *
+     * @param string|null $termos     Os termos da cláusula WHERE (ex: "id = :id").
+     * @param string|null $parametros Os parâmetros da query como string (ex: "id=1&nome=teste").
+     * @param string      $colunas    As colunas a serem selecionadas (padrão: "*").
+     * @return Modelo Retorna a própria instância do modelo para encadeamento.
+     */
+    public function busca(?string $termos = null, ?string $parametros = null, string $colunas = '*'): Modelo
     {
         if ($termos) {
             $this->query = "SELECT {$colunas} FROM " . $this->tabela . " WHERE {$termos}";
-            parse_str($parametros, $this->parametros);
+            parse_str((string)$parametros, $this->parametros);
 
             return $this;
         }
@@ -90,10 +204,18 @@ abstract class Modelo
         return $this;
     }
 
-    public function resultado(bool $todos = false)
+    /**
+     * Executa a query construída e retorna o(s) resultado(s).
+     *
+     * @param bool $todos Se true, retorna todos os resultados como um array; caso contrário, retorna um único objeto.
+     * @return array<mixed>|object|null Um array de resultados, um único objeto, ou null se não houver resultados ou ocorrer um erro.
+     */
+    public function resultado(bool $todos = false): array|object|null
     {
         try {
-            $stmt = Conexao::getInstancia()->prepare($this->query . $this->ordem . $this->limite . $this->offset);
+            $finalQuery = $this->query . ($this->ordem ?? '') . ($this->limite ?? '') . ($this->offset ?? '');
+
+            $stmt = Conexao::getInstancia()->prepare($finalQuery);
             $stmt->execute($this->parametros);
 
             if (!$stmt->rowCount()) {
@@ -110,7 +232,13 @@ abstract class Modelo
         }
     }
 
-    protected function cadastrar(array $dados)
+    /**
+     * Cadastra novos dados na tabela do modelo.
+     *
+     * @param array $dados Um array associativo com os dados a serem inseridos (chave => valor).
+     * @return string|null O ID da última inserção ou null em caso de erro.
+     */
+    protected function cadastrar(array $dados): ?string
     {
         try {
             $colunas = implode(",",  array_keys($dados));
@@ -127,7 +255,14 @@ abstract class Modelo
         }
     }
 
-    protected function atualizar(array $dados, string $termos)
+    /**
+     * Atualiza dados existentes na tabela do modelo.
+     *
+     * @param array  $dados  Um array associativo com os dados a serem atualizados (chave => valor).
+     * @param string $termos Os termos da cláusula WHERE para identificar o(s) registro(s) a ser(em) atualizado(s).
+     * @return int|null O número de linhas afetadas pela atualização ou null em caso de erro.
+     */
+    protected function atualizar(array $dados, string $termos): ?int
     {
         try {
             $set = [];
@@ -141,14 +276,20 @@ abstract class Modelo
             $stmt = Conexao::getInstancia()->prepare($query);
             $stmt->execute($this->filtro($dados));
 
-            return ($stmt->rowCount() ?? 1);
+            return ($stmt->rowCount());
         } catch (\Throwable $th) {
             echo $this->erro = $th;
             return null;
         }
     }
 
-    public function apagar(string $termos)
+    /**
+     * Apaga registro(s) da tabela do modelo.
+     *
+     * @param string $termos Os termos da cláusula WHERE para identificar o(s) registro(s) a ser(em) apagado(s).
+     * @return bool|null True em caso de sucesso, ou null em caso de erro.
+     */
+    public function apagar(string $termos): ?bool
     {
         try {
             $query = "DELETE FROM " . $this->tabela . " WHERE {$termos}";
@@ -157,13 +298,18 @@ abstract class Modelo
 
             return true;
         } catch (\Throwable $th) {
-            $this->erro = $th->getMessage();
-
+            $this->erro = $th;
             return null;
         }
     }
 
-    private function filtro(array $dados)
+    /**
+     * Filtra os dados fornecidos, retornando apenas valores seguros.
+     *
+     * @param array $dados O array de dados a ser filtrado.
+     * @return array O array de dados filtrado.
+     */
+    private function filtro(array $dados): array
     {
         $filtro = [];
 
@@ -174,22 +320,38 @@ abstract class Modelo
         return $filtro;
     }
 
-    protected function armazenar()
+    /**
+     * Converte os dados do modelo (stdClass) para um array.
+     *
+     * @return array Um array associativo contendo os dados do modelo.
+     */
+    protected function armazenar(): array
     {
         $dados = (array) $this->dados;
         return $dados;
     }
 
-    public function buscaPorId(int $id)
+    /**
+     * Busca um registro pelo ID na tabela do modelo.
+     *
+     * @param int $id O ID do registro a ser buscado.
+     * @return object|null O objeto do registro encontrado ou null se não for encontrado.
+     */
+    public function buscaPorId(int $id): ?object
     {
         $busca = $this->busca("id = {$id}");
 
         return $busca->resultado();
     }
 
-    public function salvar()
+    /**
+     * Salva os dados do modelo no banco de dados.
+     * Realiza um cadastro se o modelo não tiver um ID, ou uma atualização se já tiver.
+     *
+     * @return bool True em caso de sucesso (cadastro ou atualização), false em caso de erro.
+     */
+    public function salvar(): bool
     {
-        //Cadastrar
         if (empty($this->id)) {
             $this->cadastrar($this->armazenar());
             if ($this->erro) {
@@ -197,15 +359,14 @@ abstract class Modelo
             }
         }
 
-        //Editar
         if (!empty($this->id)) {
             $id = $this->id;
             $this->atualizar($this->armazenar(), "id = {$id}");
             if ($this->erro) {
                 return false;
             }
-
-            $this->dados = $this->buscaPorId($id)->dados;
+            $result = $this->buscaPorId($id);
+            $this->dados = $result->dados;
         }
         return true;
     }

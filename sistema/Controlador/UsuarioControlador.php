@@ -3,7 +3,6 @@
 namespace sistema\Controlador;
 
 use sistema\Nucleo\Controlador;
-use sistema\Nucleo\Helpers;
 use sistema\Nucleo\Sessao;
 use sistema\Modelos\UsuarioModelo;
 
@@ -23,5 +22,4 @@ class UsuarioControlador extends Controlador
 
         return (new UsuarioModelo())->buscaPorId($sessao->usuarioId);
     }
-    
 }

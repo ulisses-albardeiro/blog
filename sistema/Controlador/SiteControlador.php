@@ -19,7 +19,7 @@ class SiteControlador extends Controlador
         $posts = (new PostModelo())->busca("status = 1")->ordem('id DESC')->resultado(true) ?? []; 
         $categorias = (new CategoriaModelo())->busca("status = 1")->resultado(true) ?? []; 
 
-        // Divide as categorias em duas partes
+        // Divide as categorias em duas partes para apresentar na view
         $metade = ceil(count($categorias) / 2);
         $categoriasEsquerda = array_slice($categorias, 0, $metade);
         $categoriasDireita = array_slice($categorias, $metade);
@@ -45,7 +45,7 @@ class SiteControlador extends Controlador
         if (isset($pesquisa)) {
             $posts = (new PostModelo())->busca("status = 1 AND (titulo LIKE '%{$pesquisa}%' OR texto LIKE '%{$pesquisa}%')")->resultado(true);
 
-            // Divide as categorias em duas partes
+            // Divide as categorias em duas partes para apresentar na view
             $categorias = (new CategoriaModelo())->busca()->resultado(true);
             $metade = ceil(count($categorias) / 2);
             $categoriasEsquerda = array_slice($categorias, 0, $metade);
@@ -69,7 +69,7 @@ class SiteControlador extends Controlador
         $categorias = (new CategoriaModelo())->busca()->resultado(true); 
         $categoria = (new CategoriaModelo())->busca('id = :id', 'id=' . $post->categoria_id)->resultado();
 
-        // Divide as categorias em duas partes
+        // Divide as categorias em duas partes para apresentar na view
         $metade = ceil(count($categorias) / 2);
         $categoriasEsquerda = array_slice($categorias, 0, $metade);
         $categoriasDireita = array_slice($categorias, $metade);

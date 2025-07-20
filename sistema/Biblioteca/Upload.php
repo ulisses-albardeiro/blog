@@ -21,7 +21,6 @@ use GdImage;
 
 class Upload
 {
-
     private ?string $diretorio;
     private array $arquivo;
     private ?string $nome;

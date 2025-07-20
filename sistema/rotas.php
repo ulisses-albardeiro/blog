@@ -23,7 +23,6 @@ try {
         SimpleRouter::get(URL_ADMIN.'dashboard', 'AdminDashboard@dashboard');
         SimpleRouter::get(URL_ADMIN.'sair', 'AdminDashboard@sair');
 
-
         //Rotas Categorias
         SimpleRouter::get(URL_ADMIN.'categorias/listar', 'AdminCategorias@listar');
         SimpleRouter::match(['get', 'post'], URL_ADMIN. 'categorias/cadastrar', 'AdminCategorias@cadastrarCategoria');
@@ -46,8 +45,6 @@ try {
         SimpleRouter::match(['get', 'post'], URL_ADMIN . 'recuperacao-de-senha', 'EmailRecuperacao@emailRecuperacao');
         SimpleRouter::match(['get', 'post'], URL_ADMIN . 'nova-senha/', 'NovaSenha@novaSenha');
         SimpleRouter::match(['get', 'post'], URL_ADMIN . 'salvar-senha', 'NovaSenha@salvarNovaSenha');
-
-
     });
 
     SimpleRouter::start();
@@ -59,5 +56,4 @@ try {
     } else {
         Helpers::redirecionar('404');
     }
-    
 }
