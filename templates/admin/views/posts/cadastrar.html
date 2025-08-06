@@ -69,12 +69,15 @@
 
 
 <script>
-    //Editor Trumbowyg
     $(document).ready(function () {
-
         $('#editor').trumbowyg({
             lang: 'pt_br',
             btnsDef: {
+                // Adicione o botão de vídeo aqui
+                video: {
+                    dropdown: ['insertVideo'],
+                    ico: 'insertVideo'
+                },
                 image: {
                     dropdown: ['insertImage', 'upload'],
                     ico: 'insertImage'
@@ -86,7 +89,8 @@
                 ['strong', 'em', 'del'],
                 ['superscript', 'subscript'],
                 ['link'],
-                ['image'],
+                // Adicione o nome do botão personalizado
+                ['image', 'video'],
                 ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
                 ['unorderedList', 'orderedList'],
                 ['horizontalRule'],
