@@ -55,7 +55,8 @@
                 </div>
                 <div class="mb-3">
                     <label for="editor" class="form-label">Texto</label>
-                    <textarea id="editor" name="texto" rows="5">{% if post.texto %}{{decodeHtml(post.texto)}}{% endif %}</textarea>
+                    <textarea id="editor" name="texto"
+                        rows="5">{% if post.texto %}{{decodeHtml(post.texto)}}{% endif %}</textarea>
                 </div>
 
                 <input type="submit" class="btn btn-primary"
@@ -69,15 +70,12 @@
 
 
 <script>
+    //Editor Trumbowyg
     $(document).ready(function () {
+
         $('#editor').trumbowyg({
             lang: 'pt_br',
             btnsDef: {
-                // Adicione o botão de vídeo aqui
-                video: {
-                    dropdown: ['insertVideo'],
-                    ico: 'insertVideo'
-                },
                 image: {
                     dropdown: ['insertImage', 'upload'],
                     ico: 'insertImage'
@@ -89,8 +87,8 @@
                 ['strong', 'em', 'del'],
                 ['superscript', 'subscript'],
                 ['link'],
-                // Adicione o nome do botão personalizado
-                ['image', 'video'],
+                ['image'],
+                ['noembed'],
                 ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
                 ['unorderedList', 'orderedList'],
                 ['horizontalRule'],
@@ -99,7 +97,7 @@
             ],
             plugins: {
                 upload: {
-                    serverPath: "{{ url('admin/posts/cadastrar') }}", 
+                    serverPath: "{{ url('admin/posts/cadastrar') }}",
                     fileFieldName: 'Imagem-editor',
                     headers: {
                         'Authorization': 'Client-ID xxxxxxxxxxxx'
